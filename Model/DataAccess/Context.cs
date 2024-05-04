@@ -32,13 +32,17 @@ namespace Model.DataAccess
 
         public Context()
         {
-            //Database.EnsureDeleted();
+            Database.EnsureDeleted();
             Database.EnsureCreated();
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.ApplyConfiguration(new StudentCfg());
             modelBuilder.ApplyConfiguration(new EmployeeDisciplineCfg());
+            modelBuilder.ApplyConfiguration(new GroupDistributionCfg());
+            modelBuilder.ApplyConfiguration(new DisciplineCfg());
+            modelBuilder.ApplyConfiguration(new ScoreCfg());
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics.CodeAnalysis;
 
 namespace Model
@@ -47,5 +48,14 @@ namespace Model
 
         [ObservableProperty]
         private DateOnly _dateOfStudy;
+        
+        private string _groupName = string.Empty;
+
+        [NotMapped]
+        public string GroupName 
+        {
+            get => _groupName;
+            set => SetProperty(ref _groupName, value);
+        }
     }
 }

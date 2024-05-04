@@ -11,19 +11,29 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="3"/>
+            <ColumnDefinition Width="300"/>
         </Grid.ColumnDefinitions>
 
-        <ListBox Grid.Column="0"
+        <DataGrid Grid.Column="0"
                   ItemsSource="{Binding Students}" 
-
-                  SelectedItem="{Binding CurrentStudent, Mode=TwoWay}"
-                  DisplayMemberPath="Name"/>
-        <StackPanel Grid.Column="1">
+                  IsReadOnly="True"
+                  SelectedItem="{Binding CurrentStudent}" 
+                  AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Зачетная книжка" Binding="{Binding NubmerOfRecordBook}"/>
+                <DataGridTextColumn Header="Имя" Binding="{Binding NubmerOfRecordBook}"/>
+                <DataGridTextColumn Header="Фамилия" Binding="{Binding NubmerOfRecordBook}"/>
+                <DataGridTextColumn Header="Отчество" Binding="{Binding NubmerOfRecordBook}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <GridSplitter Grid.Column="1" ShowsPreview="False" Width="3"
+                      HorizontalAlignment="Center" VerticalAlignment="Stretch" />
+        <StackPanel Grid.Column="2">
             <Image />
             <StackPanel>
                 <Label Content="Номер зачетной книжки" />
-                <TextBox Text="{Binding CurrentStudent.NubmerOfRecordBook}"
+                <TextBox Text="{Binding CurrentStudent.NubmerOfRecordBook, Mode=OneWay}"
                          Margin="5 0"
                          Width="150" 
                          IsReadOnly="True"
@@ -31,21 +41,49 @@
             </StackPanel>
             <StackPanel>
                 <Label Content="Имя" />
-                <TextBox Text="{Binding CurrentStudent.Name, Mode=TwoWay}"
+                <TextBox Text="{Binding CurrentStudent.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          Margin="5 0"
                          Width="150" 
                          HorizontalAlignment="Left"/>
             </StackPanel>
             <StackPanel>
                 <Label Content="Фамилия" />
-                <TextBox Text="{Binding CurrentStudent.Surname}"
+                <TextBox Text="{Binding CurrentStudent.Surname, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          Margin="5 0"
                          Width="150" 
                          HorizontalAlignment="Left"/>
             </StackPanel>
             <StackPanel>
                 <Label Content="Отчество" />
-                <TextBox Text="{Binding CurrentStudent.Patronymic}"
+                <TextBox Text="{Binding CurrentStudent.Patronymic, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         Margin="5 0"
+                         Width="150" 
+                         HorizontalAlignment="Left"/>
+            </StackPanel>
+            <StackPanel>
+                <Label Content="Название специальности" />
+                <TextBox Text="{Binding CurrentStudent.SpecializationName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         Margin="5 0"
+                         Width="150" 
+                         HorizontalAlignment="Left"/>
+            </StackPanel>
+            <StackPanel>
+                <Label Content="Номер телефона" />
+                <TextBox Text="{Binding CurrentStudent.PhoneNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         Margin="5 0"
+                         Width="150" 
+                         HorizontalAlignment="Left"/>
+            </StackPanel>
+            <StackPanel>
+                <Label Content="Почта" />
+                <TextBox Text="{Binding CurrentStudent.Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         Margin="5 0"
+                         Width="150" 
+                         HorizontalAlignment="Left"/>
+            </StackPanel>
+            <StackPanel>
+                <Label Content="Улица проживания" />
+                <TextBox Text="{Binding CurrentStudent.Street, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          Margin="5 0"
                          Width="150" 
                          HorizontalAlignment="Left"/>
