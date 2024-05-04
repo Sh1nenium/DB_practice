@@ -1,16 +1,21 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using Microsoft.EntityFrameworkCore;
 
 namespace Model
 {
     [PrimaryKey("EmployeeId", "DisciplineId")]
-    public class EmployeeDiscipline
+    public partial class EmployeeDiscipline : ObservableObject
     {
-        public long EmployeeId { get; set; }
+        [ObservableProperty]
+        private long _employeeId;
 
-        public long DisciplineId { get; set; }
+        [ObservableProperty]
+        private long _disciplineId;
 
-        public DateOnly StartDateOfTeaching { get; set; }
+        [ObservableProperty]
+        private DateOnly _startDateOfTeaching;
 
-        public DateOnly EndDateOfTeaching { get; set; }
+        [ObservableProperty]
+        private DateOnly _endDateOfTeaching;
     }
 }

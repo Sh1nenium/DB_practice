@@ -1,16 +1,20 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 
 namespace Model
 {
     [PrimaryKey("NumberOfRecordBook", "TaskId")]
-    public class Score
+    public partial class Score : ObservableValidator
     {
-        public long NumberOfRecordBook { get; set; }
+        [ObservableProperty]
+        private long _numberOfRecordBook;
 
-        public long TaskId { get; set; }
+        [ObservableProperty]
+        private long _taskId;
 
         [Range(0, 20)]
-        public int ScoreNumber { get; set; }
+        [ObservableProperty]
+        private int _scoreNumber;
     }
 }

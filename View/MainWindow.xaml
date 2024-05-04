@@ -3,10 +3,25 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:tabs="clr-namespace:View.Tabs"
         mc:Ignorable="d"
         DataContext="{StaticResource MainWindowViewModel}"
-        Title="Электронная кафедра" Height="450" Width="800">
+        Title="Электронная кафедра" Height="450" Width="800"
+        WindowStartupLocation="CenterScreen">
     <Grid>
-        
+        <TabControl>
+            <TabItem Header="Студенты">
+                <tabs:StudentTab DataContext="{Binding StudentViewModel}" />
+            </TabItem>
+            <TabItem Header="Группы">
+ 
+            </TabItem>
+            <TabItem Header="Дисциплины">
+
+            </TabItem>
+            <TabItem Header="Сотрудники">
+
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>

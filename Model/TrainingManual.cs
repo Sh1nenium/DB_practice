@@ -1,20 +1,24 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 
 namespace Model
 {
-    public class TrainingManual
+    public partial class TrainingManual : ObservableValidator
     {
-        public long Id { get; set; }
+        [ObservableProperty]
+        private long _id;
 
         [MaxLength(100)]
-        public string Name { get; set; } = string.Empty;
+        [ObservableProperty]
+        private string _name = string.Empty;
 
         [Url]
         [AllowNull]
-        public string ResourceLink { get; set; } = string.Empty;
+        [ObservableProperty]
+        private string _resourceLink = string.Empty;
 
-
-        public DateOnly DateOfPublication { get; set; }
+        [ObservableProperty]
+        private DateOnly _dateOfPublication;
     }
 }

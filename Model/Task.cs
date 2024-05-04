@@ -1,15 +1,19 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace Model
 {
-    public class Task
+    public partial class Task : ObservableValidator
     {
-        public long Id { get; set; }
+        [ObservableProperty]
+        private long _id;
 
         [MaxLength(100)]
-        public string Name { get; set; } = string.Empty;
+        [ObservableProperty]
+        private string _name = string.Empty;
 
         [MaxLength(3000)]
-        public string Description { get; set; } = string.Empty;
+        [ObservableProperty]
+        private string _description = string.Empty;
     }
 }

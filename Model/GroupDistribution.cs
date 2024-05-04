@@ -1,16 +1,21 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using Microsoft.EntityFrameworkCore;
 
 namespace Model
 {
     [PrimaryKey("GroupId", "DisciplineId")]
-    public class GroupDistribution
+    public partial class GroupDistribution : ObservableObject
     {
-        public long GroupId { get; set; }
+        [ObservableProperty]
+        private long _groupId;
 
-        public long DisciplineId { get; set; }
+        [ObservableProperty]
+        private long _disciplineId;
 
-        public int HoursPerAcademicYear { get; set; }
+        [ObservableProperty]
+        private int _hoursPerAcademicYear;
 
-        public DateOnly DateOfDistribution { get; set; }
+        [ObservableProperty]
+        private DateOnly _dateOfDistribution;
     }
 }

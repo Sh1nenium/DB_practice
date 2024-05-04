@@ -1,17 +1,22 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace Model
 {
-    public class Discipline
+    public partial class Discipline : ObservableValidator
     {
-        public long Id { get; set; }
+        [ObservableProperty]
+        private long _id;
 
         [MaxLength(40)]
-        public string Name { get; set; } = string.Empty;
+        [ObservableProperty]
+        private string _name = string.Empty;
 
         [MaxLength(50)]
-        public string SpecializationName { get; set; } = string.Empty;
+        [ObservableProperty]
+        public string _specializationName = string.Empty;
 
-        public DateOnly DateOfStudy { get; set; }
+        [ObservableProperty]
+        private DateOnly _dateOfStudy;
     }
 }

@@ -1,39 +1,51 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 
 namespace Model
 {
-    public class Student
+    public partial class Student : ObservableValidator
     {
         [Key]
-        public long NubmerOfRecordBook { get; set; }
+        [ObservableProperty]
+        private long _nubmerOfRecordBook;
 
-        public byte[]? Photo { get; set; }
+        [ObservableProperty]
+        private byte[]? _photo;
 
-        public bool SabbaticalLeave { get; set; } = false;
+        [ObservableProperty]
+        private bool _sabbaticalLeave = false;
 
         [MaxLength(30)]
-        public string Name { get; set; } = string.Empty;
+        [ObservableProperty]
+        private string _name = string.Empty;
 
         [MaxLength(30)]
-        public string Surname { get; set; } = string.Empty;
+        [ObservableProperty]
+        private string _surname = string.Empty;
 
         [AllowNull]
         [MaxLength(30)]
-        public string Patronymic { get; set; } = string.Empty;
+        [ObservableProperty]
+        private string _patronymic = string.Empty;
 
         [MaxLength(50)]
-        public string SpecializationName { get; set; } = string.Empty;
+        [ObservableProperty]
+        private string _specializationName = string.Empty;
 
         [RegularExpression(@"\+? ?3?[ -]?8?[ -]?\(?(\d[ -]?){3}\)?[ -]?(\d[ -]?){7}")]
-        public string PhoneNumber { get; set; } = string.Empty;
+        [ObservableProperty]
+        private string _phoneNumber = string.Empty;
 
         [EmailAddress]
-        public string Email { get; set; } = string.Empty;
+        [ObservableProperty]
+        private string _email = string.Empty;
 
         [MaxLength(100)]
-        public string Street { get; set; } = string.Empty;
+        [ObservableProperty]
+        private string _street = string.Empty;
 
-        public DateOnly DateOfStudy { get; set; }
+        [ObservableProperty]
+        private DateOnly _dateOfStudy;
     }
 }
