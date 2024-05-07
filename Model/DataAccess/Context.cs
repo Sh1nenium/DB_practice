@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Model.DataAccess.Cfg;
+using System.Resources;
 
 namespace Model.DataAccess
 {
@@ -43,6 +45,19 @@ namespace Model.DataAccess
             modelBuilder.ApplyConfiguration(new GroupDistributionCfg());
             modelBuilder.ApplyConfiguration(new DisciplineCfg());
             modelBuilder.ApplyConfiguration(new ScoreCfg());
+
+            modelBuilder.Entity<Student>().HasData(new Student {
+                NumberOfRecordBook = 1,
+                Photo = File.ReadAllBytes("C:\\Users\\sabir\\source\\repos\\DB_practice\\View\\Resources\\1.jpg"), 
+                SabbaticalLeave = false,
+                Name = "Дмитрий",
+                Surname = "Сабиров",
+                Patronymic = "Игоревич",
+                SpecializationName = "Разработка ПО",
+                PhoneNumber = "+7-983-231-95-09",
+                Email = "sab@gmail.com",
+                Street = "ул. Федор - Лыткино, 8",
+                DateOfStudy = new DateOnly(2022, 02, 02)});
         }
     }
 }

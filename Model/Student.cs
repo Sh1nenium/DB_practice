@@ -9,7 +9,7 @@ namespace Model
     {
         [Key]
         [ObservableProperty]
-        private long _nubmerOfRecordBook;
+        private long _numberOfRecordBook;
 
         [ObservableProperty]
         private byte[]? _photo;

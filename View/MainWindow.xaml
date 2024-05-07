@@ -6,7 +6,7 @@
         xmlns:tabs="clr-namespace:View.Tabs"
         mc:Ignorable="d"
         DataContext="{StaticResource MainWindowViewModel}"
-        Title="Электронная кафедра" Height="450" Width="800"
+        Title="Электронная кафедра" MinHeight="550" Width="850"
         WindowStartupLocation="CenterScreen">
     <Grid>
         <TabControl>

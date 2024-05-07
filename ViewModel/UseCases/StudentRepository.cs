@@ -20,17 +20,24 @@ namespace ViewModel.UseCases
             return [.. context.Students];
         }
 
-        public Task<Student> GetByNubmerOfRecordBook(int numberOfRecordBook)
+        public async Task<Student?> GetByNumberOfRecordBook(long numberOfRecordBook)
         {
-            throw new NotImplementedException();
+            using Context context = new();
+            return await context.Students.FindAsync(numberOfRecordBook);
         }
 
-        public Task Remove(Student student)
+        public async Task Remove(long numberOfRecordBook)
         {
-            throw new NotImplementedException();
+            using Context context = new();
+            Student? findedStudent = await context.Students.FindAsync(numberOfRecordBook);
+
+            if (findedStudent == null) return;
+
+            context.Students.Remove(findedStudent);
+            context.SaveChanges();
         }
 
-        public Task Update(Student student)
+        public async Task Update(Student student)
         {
             throw new NotImplementedException();
         }

@@ -7,87 +7,115 @@
              Background="White"
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance Type=vm:StudentViewModel}"
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="550" d:DesignWidth="850">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="3"/>
             <ColumnDefinition Width="300"/>
         </Grid.ColumnDefinitions>
-
-        <DataGrid Grid.Column="0"
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" >
+            <Button Content="Добавить" Width="70" Margin="5 0" Command="{Binding AddCommand}"/>
+            <Button Content="Изменить" Width="70" Margin="5 0" Command="{Binding EditCommand}"/>
+            <Button Content="Удалить" Width="70" Margin="5 0" Command="{Binding DeleteCommand}" CommandParameter="{Binding CurrentStudent}"/>
+        </StackPanel>
+        <DataGrid Grid.Row="1"
+                  Grid.Column="0"
                   ItemsSource="{Binding Students}" 
                   IsReadOnly="True"
+                  IsEnabled="{Binding IsEnabledDataGrid}"
                   SelectedItem="{Binding CurrentStudent}" 
                   AutoGenerateColumns="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Зачетная книжка" Binding="{Binding NubmerOfRecordBook}"/>
-                <DataGridTextColumn Header="Имя" Binding="{Binding NubmerOfRecordBook}"/>
-                <DataGridTextColumn Header="Фамилия" Binding="{Binding NubmerOfRecordBook}"/>
-                <DataGridTextColumn Header="Отчество" Binding="{Binding NubmerOfRecordBook}"/>
+                <DataGridTextColumn Header="Зачетная книжка" Binding="{Binding NumberOfRecordBook}"/>
+                <DataGridCheckBoxColumn Header="Академ" Binding="{Binding SabbaticalLeave}"/>
+                <DataGridTextColumn Header="Имя" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="Фамилия" Binding="{Binding Surname}"/>
+                <DataGridTextColumn Header="Отчество" Binding="{Binding Patronymic}"/>
+                <DataGridTextColumn Header="Название специальности" Binding="{Binding SpecializationName}"/>
+                <DataGridTextColumn Header="Номер телефона" Binding="{Binding PhoneNumber}"/>
+                <DataGridTextColumn Header="Почта" Binding="{Binding Email}"/>
+                <DataGridTextColumn Header="Улица проживания" Binding="{Binding Street}"/>
+                <DataGridTextColumn Header="Дата начала обучения" Binding="{Binding DateOfStudy}"/>
+                <DataGridTextColumn Header="Название группы" Binding="{Binding GroupName}"/>
             </DataGrid.Columns>
         </DataGrid>
-        <GridSplitter Grid.Column="1" ShowsPreview="False" Width="3"
+        <GridSplitter Grid.Column="1" Grid.Row="1" ShowsPreview="False" Width="3"
                       HorizontalAlignment="Center" VerticalAlignment="Stretch" />
-        <StackPanel Grid.Column="2">
-            <Image />
-            <StackPanel>
-                <Label Content="Номер зачетной книжки" />
-                <TextBox Text="{Binding CurrentStudent.NubmerOfRecordBook, Mode=OneWay}"
-                         Margin="5 0"
-                         Width="150" 
-                         IsReadOnly="True"
-                         HorizontalAlignment="Left"/>
+        <Grid Grid.Column="2" Grid.Row="1" IsEnabled="{Binding IsEnabledStudentInfo}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="170"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0">
+                <StackPanel>
+                    <Label Content="Номер зачетной книжки" />
+                    <TextBox Text="{Binding CurrentStudent.NumberOfRecordBook, Mode=OneWay}"
+                             Margin="5 0"
+                             IsReadOnly="True"/>
+                </StackPanel>
+                <StackPanel>
+                    <Label Content="Имя" />
+                    <TextBox Text="{Binding CurrentStudent.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             Margin="5 0"/>
+                </StackPanel>
+                <StackPanel>
+                    <Label Content="Фамилия" />
+                    <TextBox Text="{Binding CurrentStudent.Surname, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             Margin="5 0"/>
+                </StackPanel>
+                <StackPanel>
+                    <Label Content="Отчество" />
+                    <TextBox Text="{Binding CurrentStudent.Patronymic, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             Margin="5 0"/>
+                </StackPanel>
+                <StackPanel>
+                    <Label Content="Название специальности" />
+                    <TextBox Text="{Binding CurrentStudent.SpecializationName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             Margin="5 0"/>
+                </StackPanel>
+                <StackPanel>
+                    <Label Content="Номер телефона" />
+                    <TextBox Text="{Binding CurrentStudent.PhoneNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             Margin="5 0"/>
+                </StackPanel>
+                <StackPanel>
+                    <Label Content="Почта" />
+                    <TextBox Text="{Binding CurrentStudent.Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             Margin="5 0"/>
+                </StackPanel>
+                <StackPanel>
+                    <Label Content="Улица проживания" />
+                    <TextBox Text="{Binding CurrentStudent.Street, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             Margin="5 0"/>
+                </StackPanel>
+                <StackPanel>
+                    <Label Content="Дата начала обучения" />
+                    <TextBox Text="{Binding CurrentStudent.DateOfStudy, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             Margin="5 0"/>
+                </StackPanel>
+                <StackPanel>
+                    <Label Content="Название группы" />
+                    <TextBox Text="{Binding CurrentStudent.GroupName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             Margin="5 0"/>
+                </StackPanel>
+                <Grid Margin="5 10" Height="30">
+                    <Button Content="Принять" Width="70" HorizontalAlignment="Left"/>
+                    <Button Content="Отменить" Width="70" HorizontalAlignment="Right"/>
+                </Grid>
             </StackPanel>
-            <StackPanel>
-                <Label Content="Имя" />
-                <TextBox Text="{Binding CurrentStudent.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                         Margin="5 0"
-                         Width="150" 
-                         HorizontalAlignment="Left"/>
+            <StackPanel Grid.Column="1" VerticalAlignment="Top">
+                <Image  Margin="5" Source="{Binding CurrentStudent.Photo}" />
+                <StackPanel Orientation="Horizontal" Height="20">
+                    <Button Content="Загрузить" Margin="1 0 5 0"/>
+                    <Button Content="Удалить"/>
+                </StackPanel>
+                <CheckBox Content="Академический отпуск" IsChecked="{Binding CurrentStudent.SabbaticalLeave}"/>
             </StackPanel>
-            <StackPanel>
-                <Label Content="Фамилия" />
-                <TextBox Text="{Binding CurrentStudent.Surname, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                         Margin="5 0"
-                         Width="150" 
-                         HorizontalAlignment="Left"/>
-            </StackPanel>
-            <StackPanel>
-                <Label Content="Отчество" />
-                <TextBox Text="{Binding CurrentStudent.Patronymic, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                         Margin="5 0"
-                         Width="150" 
-                         HorizontalAlignment="Left"/>
-            </StackPanel>
-            <StackPanel>
-                <Label Content="Название специальности" />
-                <TextBox Text="{Binding CurrentStudent.SpecializationName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                         Margin="5 0"
-                         Width="150" 
-                         HorizontalAlignment="Left"/>
-            </StackPanel>
-            <StackPanel>
-                <Label Content="Номер телефона" />
-                <TextBox Text="{Binding CurrentStudent.PhoneNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                         Margin="5 0"
-                         Width="150" 
-                         HorizontalAlignment="Left"/>
-            </StackPanel>
-            <StackPanel>
-                <Label Content="Почта" />
-                <TextBox Text="{Binding CurrentStudent.Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                         Margin="5 0"
-                         Width="150" 
-                         HorizontalAlignment="Left"/>
-            </StackPanel>
-            <StackPanel>
-                <Label Content="Улица проживания" />
-                <TextBox Text="{Binding CurrentStudent.Street, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                         Margin="5 0"
-                         Width="150" 
-                         HorizontalAlignment="Left"/>
-            </StackPanel>
-        </StackPanel>
+        </Grid>
     </Grid>
 </UserControl>
