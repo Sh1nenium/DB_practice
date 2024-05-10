@@ -1,17 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.Win32;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using ViewModel;
 
 namespace View.Tabs
 {
@@ -20,9 +10,24 @@ namespace View.Tabs
     /// </summary>
     public partial class StudentTab : UserControl
     {
+        private readonly StudentViewModel _viewModel;
+
         public StudentTab()
         {
             InitializeComponent();
+
+            _viewModel = new StudentViewModel();
+
+            DataContext = _viewModel;
+        }
+        
+        private void OpenFileButton_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog() == true)
+            {
+                _viewModel.UploadImage(openFileDialog.FileName);
+            }
         }
     }
 }

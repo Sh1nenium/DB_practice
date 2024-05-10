@@ -6,12 +6,12 @@
     {
         public List<Group> GetAll();
 
-        public Task<Group> GetById(int id);
+        public Task<Group?> GetById(long id);
 
         public Task Add(Group group);
 
-        public Task Update(Group group);
+        public void Update(Group group);
 
-        public Task Remove(Group group);
+        public Task Remove(long id);
     }
 }

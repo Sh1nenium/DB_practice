@@ -4,13 +4,13 @@
 
     public interface IDisciplineRepository
     {
-        public List<Group> GetAll();
+        public List<Discipline> GetAll();
 
-        public Task<Group> GetById(int id);
+        public Task<Discipline?> GetById(int id);
 
         public Task Add(Group group);
 
-        public Task Update(Group group);
+        public void Update(Group group);
 
         public Task Remove(Group group);
     }

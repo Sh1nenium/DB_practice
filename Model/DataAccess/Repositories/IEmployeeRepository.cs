@@ -6,7 +6,7 @@
     {
         public List<Employee> GetAll();
 
-        public Task<Employee> GetById(int id);
+        public Task<Employee?> GetById(int id);
 
         public Task Add(Employee employee);
 

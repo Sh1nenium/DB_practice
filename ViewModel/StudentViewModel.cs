@@ -12,7 +12,7 @@ namespace ViewModel
 
     public partial class StudentViewModel : BaseViewModel
     {
-        private IStudentRepository studentRepository = new StudentRepository();
+        private IStudentRepository _studentRepository = new StudentRepository();
 
         private State _state = State.OnDefault;
 
@@ -30,7 +30,7 @@ namespace ViewModel
 
         partial void OnCurrentStudentChanged(Student? value)
         {
-            AddCommand.NotifyCanExecuteChanged();
+            EditStudentCommand.NotifyCanExecuteChanged();
         }
 
         private bool StudentNotNull()
@@ -45,43 +45,111 @@ namespace ViewModel
 
         private void SwapState(State state)
         {
-            IsEnabledStudentInfo = true;
-            IsEnabledDataGrid = false;
+            IsEnabledStudentInfo = !IsEnabledStudentInfo;
+            IsEnabledDataGrid = !IsEnabledDataGrid;
             _state = state;
         }
 
         [RelayCommand]
-        public void Add()
+        public void AddStudent()
         {
             SwapState(State.OnAdd);
-            CurrentStudent = null;
-
+            CurrentStudent = new()
+            {
+                NumberOfRecordBook = Students.Count + 1
+            };
+            ApplyStudentCommand.NotifyCanExecuteChanged();
         }
 
         [RelayCommand(CanExecute = nameof(StudentNotNull))]
-        public void Edit()
+        public void EditStudent()
         {
             SwapState(State.OnEdit);
         }
 
         [RelayCommand(CanExecute = nameof(StudentsIsExist))]
-        public async Task Delete(Student student)
+        public async Task DeleteStudent()
         {
-            if (student == null)
+            if (CurrentStudent == null)
             {
-                await studentRepository.Remove(Students.Last().NumberOfRecordBook);
+                await _studentRepository.Remove(Students.Last().NumberOfRecordBook);
                 Students.Remove(Students.Last());
                 return;
             }
-            await studentRepository.Remove(student.NumberOfRecordBook);
-            Students.Remove(student);
+            await _studentRepository.Remove(CurrentStudent.NumberOfRecordBook);
+            Students.Remove(CurrentStudent);
 
-            DeleteCommand.NotifyCanExecuteChanged();
+            DeleteStudentCommand.NotifyCanExecuteChanged();
+        }
+
+        public void UploadImage(string path)
+        {
+            if (CurrentStudent == null) return;
+
+            CurrentStudent.Photo = File.ReadAllBytes(path);
+
+            return;
+        }
+
+        [RelayCommand]
+        public void DeleteImage(Student student)
+        {
+            if (CurrentStudent == null) return;
+
+            CurrentStudent.Photo = null;
+        }
+
+        [RelayCommand()]
+        public async Task ApplyStudent()
+        {
+            if (CurrentStudent == null) return;
+
+            if (_state == State.OnAdd)
+            {
+                await _studentRepository.Add(CurrentStudent);
+                Students.Add(CurrentStudent);
+            }
+
+            if (_state == State.OnEdit)
+            {
+                _studentRepository.Update(CurrentStudent);
+            }
+
+            SwapState(State.OnDefault);
+            CurrentStudent = null;
+        }
+
+        [RelayCommand]
+        public async Task CancelStudent()
+        {
+            if (_state == State.OnAdd)
+            {
+                CurrentStudent = null;
+                SwapState(State.OnDefault);
+                return;
+            }
+
+            if (_state == State.OnEdit)
+            {
+                if (CurrentStudent == null) return;
+
+                Student? studentCopy = await _studentRepository.GetByNumberOfRecordBook(CurrentStudent.NumberOfRecordBook);
+
+                int index = Students.IndexOf(CurrentStudent);
+
+                if (index == -1 || studentCopy == null) return;
+
+                CurrentStudent = null;
+                Students[index] = studentCopy;
+                SwapState(State.OnDefault);
+
+                return;
+            }
         }
 
         public StudentViewModel() 
         {
-            Students = new ObservableCollection<Student>(studentRepository.GetAll());
+            Students = new ObservableCollection<Student>(_studentRepository.GetAll());
         }
     }
 }

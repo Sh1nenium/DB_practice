@@ -8,10 +8,11 @@ namespace ViewModel.UseCases
 
     public class StudentRepository : IStudentRepository
     {
-        public Task Add(Student student)
+        public async Task Add(Student student)
         {
             using Context context = new();
-            throw new NotImplementedException();
+            await context.Students.AddAsync(student);
+            context.SaveChanges();
         }
 
         public List<Student> GetAll()
@@ -37,9 +38,11 @@ namespace ViewModel.UseCases
             context.SaveChanges();
         }
 
-        public async Task Update(Student student)
+        public void Update(Student student)
         {
-            throw new NotImplementedException();
+            using Context context = new();
+            context.Students.Update(student);
+            context.SaveChanges();
         }
     }
 }

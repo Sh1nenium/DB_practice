@@ -34,7 +34,7 @@ namespace Model.DataAccess
 
         public Context()
         {
-            Database.EnsureDeleted();
+            //Database.EnsureDeleted();
             Database.EnsureCreated();
         }
 

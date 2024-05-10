@@ -10,7 +10,7 @@
 
         public Task Add(Student student);
 
-        public Task Update(Student student);
+        public void Update(Student student);
 
         public Task Remove(long numberOfRecordBook);
     }

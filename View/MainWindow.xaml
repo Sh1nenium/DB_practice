@@ -11,10 +11,10 @@
     <Grid>
         <TabControl>
             <TabItem Header="Студенты">
-                <tabs:StudentTab DataContext="{Binding StudentViewModel}" />
+                <tabs:StudentTab />
             </TabItem>
             <TabItem Header="Группы">
- 
+                <tabs:GroupTab DataContext="{Binding GroupViewModel}" />
             </TabItem>
             <TabItem Header="Дисциплины">
 
