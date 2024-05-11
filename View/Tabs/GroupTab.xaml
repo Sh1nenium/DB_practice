@@ -40,7 +40,7 @@
         </DataGrid>
         <GridSplitter Grid.Column="1" Grid.Row="1" ShowsPreview="False" Width="3"
                   HorizontalAlignment="Center" VerticalAlignment="Stretch" />
-        <Grid Grid.Column="2" Grid.Row="1" IsEnabled="{Binding IsEnabledStudentInfo}">
+        <Grid Grid.Column="2" Grid.Row="1" IsEnabled="{Binding IsEnabledGroupInfo}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="170"/>
                 <ColumnDefinition Width="*"/>

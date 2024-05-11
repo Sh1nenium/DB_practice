@@ -45,7 +45,7 @@
                 <ColumnDefinition Width="170"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <StackPanel Grid.Column="0">
+            <StackPanel Grid.Column="0" IsEnabled="{Binding IsEnabledDisciplineInfo}">
                 <StackPanel>
                     <Label Content="Идентификатор" />
                     <TextBox Text="{Binding CurrentDiscipline.Id, Mode=OneWay}"
@@ -70,7 +70,7 @@
                 </Grid>
             </StackPanel>
             <StackPanel Grid.Column="1" VerticalAlignment="Top">
-                <Button Content="Список заданий" Height="30"/>
+                <Button Content="Список заданий" Height="30" Margin="0 0 0 5"/>
                 <Button Content="Учебные пособия" Height="30"/>
             </StackPanel>
         </Grid>
