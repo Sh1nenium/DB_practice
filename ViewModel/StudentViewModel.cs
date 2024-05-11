@@ -147,6 +147,12 @@ namespace ViewModel
             }
         }
 
+        [RelayCommand]
+        public void RefreshStudents()
+        {
+            Students = new ObservableCollection<Student>(_studentRepository.GetAll());
+        }
+
         public StudentViewModel() 
         {
             Students = new ObservableCollection<Student>(_studentRepository.GetAll());

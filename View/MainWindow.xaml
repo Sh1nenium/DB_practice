@@ -14,13 +14,13 @@
                 <tabs:StudentTab />
             </TabItem>
             <TabItem Header="Группы">
-                <tabs:GroupTab DataContext="{Binding GroupViewModel}" />
+                <tabs:GroupTab />
             </TabItem>
             <TabItem Header="Дисциплины">
-
+                <tabs:DisciplineTab />
             </TabItem>
             <TabItem Header="Сотрудники">
-
+                <tabs:EmployeeTab />
             </TabItem>
         </TabControl>
     </Grid>

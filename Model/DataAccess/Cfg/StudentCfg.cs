@@ -8,7 +8,8 @@ namespace Model.DataAccess.Cfg
         public void Configure(EntityTypeBuilder<Student> builder)
         {
             builder.HasOne<Group>()
-                .WithMany();
+                .WithMany()
+                .HasForeignKey(x => x.GroupId);
         }
     }
 }

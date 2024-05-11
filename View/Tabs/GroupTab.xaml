@@ -33,7 +33,7 @@
               AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Идентификатор" Binding="{Binding Id}"/>
-                <DataGridCheckBoxColumn Header="Название" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="Название" Binding="{Binding Name}"/>
                 <DataGridTextColumn Header="Название специальности" Binding="{Binding SpecializationName}"/>
                 <DataGridTextColumn Header="Дата начала обучения" Binding="{Binding DateOfStudy}"/>
             </DataGrid.Columns>
@@ -75,7 +75,7 @@
                     <Button Content="Отменить" Width="70" HorizontalAlignment="Right" Command="{Binding CancelGroupCommand}"/>
                 </Grid>
             </StackPanel>
-            <Button Grid.Column="1" VerticalAlignment="Top" Content="Список студентов" Height="30" />
+            <Button Grid.Column="1" VerticalAlignment="Top" Content="Список студентов" Height="30" Click="Open_New_Window"/>
         </Grid>
     </Grid>
 </UserControl>

@@ -20,8 +20,6 @@ namespace Model
         [ObservableProperty]
         private string _specializationName = string.Empty;
 
-        [Required]
-        [NotifyDataErrorInfo]
         [ObservableProperty]
         private DateOnly _dateOfStudy;
     }

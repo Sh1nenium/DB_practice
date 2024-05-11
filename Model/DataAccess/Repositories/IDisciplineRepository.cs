@@ -6,12 +6,12 @@
     {
         public List<Discipline> GetAll();
 
-        public Task<Discipline?> GetById(int id);
+        public Task<Discipline?> GetById(long id);
 
-        public Task Add(Group group);
+        public Task Add(Discipline group);
 
-        public void Update(Group group);
+        public void Update(Discipline group);
 
-        public Task Remove(Group group);
+        public Task Remove(long id);
     }
 }

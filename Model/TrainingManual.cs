@@ -14,9 +14,8 @@ namespace Model
         private string _name = string.Empty;
 
         [Url]
-        [AllowNull]
         [ObservableProperty]
-        private string _resourceLink = string.Empty;
+        private string? _resourceLink = string.Empty;
 
         [ObservableProperty]
         private DateOnly _dateOfPublication;

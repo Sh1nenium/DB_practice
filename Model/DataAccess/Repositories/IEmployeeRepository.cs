@@ -6,12 +6,12 @@
     {
         public List<Employee> GetAll();
 
-        public Task<Employee?> GetById(int id);
+        public Task<Employee?> GetById(long id);
 
         public Task Add(Employee employee);
 
-        public Task Update(Employee employee);
+        public void Update(Employee employee);
 
-        public Task Remove(Employee employee);
+        public Task Remove(long id);
     }
 }

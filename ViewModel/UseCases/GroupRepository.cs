@@ -8,9 +8,11 @@ namespace ViewModel.UseCases
 
     public class GroupRepository : IGroupRepository
     {
-        public Task Add(Group group)
+        public async Task Add(Group group)
         {
-            throw new NotImplementedException();
+            using Context context = new();
+            await context.Groups.AddAsync(group);
+            context.SaveChanges();
         }
 
         public List<Group> GetAll()
@@ -25,14 +27,22 @@ namespace ViewModel.UseCases
             return await context.Groups.FindAsync(id);
         }
 
-        public Task Remove(long id)
+        public async Task Remove(long id)
         {
-            throw new NotImplementedException();
+            using Context context = new();
+            Group? findedGroup = await context.Groups.FindAsync(id);
+
+            if (findedGroup == null) return;
+
+            context.Groups.Remove(findedGroup);
+            context.SaveChanges();
         }
 
         public void Update(Group group)
         {
-            throw new NotImplementedException();
+            using Context context = new();
+            context.Groups.Update(group);
+            context.SaveChanges();
         }
     }
 }

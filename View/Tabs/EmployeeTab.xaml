@@ -1,0 +1,122 @@
+﻿<UserControl x:Class="View.Tabs.EmployeeTab"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:vm="clr-namespace:ViewModel;assembly=ViewModel"
+             Background="White"
+             mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance Type=vm:EmployeeViewModel}"
+             d:DesignHeight="550" d:DesignWidth="850">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="3"/>
+            <ColumnDefinition Width="320"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" >
+            <Button Content="Добавить" Width="70" Margin="5 0" Command="{Binding AddEmployeeCommand}"/>
+            <Button Content="Изменить" Width="70" Margin="5 0" Command="{Binding EditEmployeeCommand}"/>
+            <Button Content="Удалить" Width="70" Margin="5 0" Command="{Binding DeleteEmployeeCommand}"/>
+        </StackPanel>
+
+        <DataGrid Grid.Row="1"
+          Grid.Column="0"
+          ItemsSource="{Binding Employee}" 
+          IsReadOnly="True"
+          IsEnabled="{Binding IsEnabledDataGrid}"
+          SelectedItem="{Binding CurrentEmployee}" 
+          AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Идентификатор" Binding="{Binding Id}"/>
+                <DataGridTextColumn Header="Имя" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="Фамилия" Binding="{Binding Surname}"/>
+                <DataGridTextColumn Header="Отчество" Binding="{Binding Patronymic}"/>
+                <DataGridTextColumn Header="Должность" Binding="{Binding Post}"/>
+                <DataGridTextColumn Header="Номер телефона" Binding="{Binding PhoneNumber}"/>
+                <DataGridTextColumn Header="Почта" Binding="{Binding Email}"/>
+                <DataGridTextColumn Header="Улица проживания" Binding="{Binding Street}"/>
+                <DataGridTextColumn Header="Опыт работы" Binding="{Binding WorkExperience}"/>
+                <DataGridTextColumn Header="Ученая степень" Binding="{Binding AcademicDegree}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <GridSplitter Grid.Column="1" Grid.Row="1" ShowsPreview="False" Width="3"
+              HorizontalAlignment="Center" VerticalAlignment="Stretch" />
+        <Grid Grid.Column="2" Grid.Row="1" IsEnabled="{Binding IsEnabledEmployeeInfo}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="170"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0">
+                <StackPanel>
+                    <Label Content="Идентификатор" />
+                    <TextBox Text="{Binding CurrentEmployee.Id, Mode=OneWay}"
+                     Margin="5 0"
+                     IsReadOnly="True"/>
+                </StackPanel>
+                <StackPanel>
+                    <Label Content="Имя" />
+                    <TextBox Text="{Binding CurrentEmployee.Name, ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     Style="{StaticResource errorTextStyle}"
+                     Margin="5 0"/>
+                </StackPanel>
+                <StackPanel>
+                    <Label Content="Фамилия" />
+                    <TextBox Text="{Binding CurrentEmployee.Surname, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     Style="{StaticResource errorTextStyle}"
+                     Margin="5 0"/>
+                </StackPanel>
+                <StackPanel>
+                    <Label Content="Отчество" />
+                    <TextBox Text="{Binding CurrentEmployee.Patronymic, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     Style="{StaticResource errorTextStyle}"
+                     Margin="5 0"/>
+                </StackPanel>
+                <StackPanel>
+                    <Label Content="Должность" />
+                    <TextBox Text="{Binding CurrentEmployee.Post, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     Style="{StaticResource errorTextStyle}"
+                     Margin="5 0"/>
+                </StackPanel>
+                <StackPanel>
+                    <Label Content="Номер телефона" />
+                    <TextBox Text="{Binding CurrentEmployee.PhoneNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     Style="{StaticResource errorTextStyle}"
+                     Margin="5 0"/>
+                </StackPanel>
+                <StackPanel>
+                    <Label Content="Почта" />
+                    <TextBox Text="{Binding CurrentEmployee.Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     Style="{StaticResource errorTextStyle}"
+                     Margin="5 0"/>
+                </StackPanel>
+                <StackPanel>
+                    <Label Content="Улица проживания" />
+                    <TextBox Text="{Binding CurrentEmployee.Street, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     Style="{StaticResource errorTextStyle}"
+                     Margin="5 0"/>
+                </StackPanel>
+                <StackPanel>
+                    <Label Content="Опыт работы" />
+                    <TextBox Text="{Binding CurrentEmployee.WorkExperience, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     Style="{StaticResource errorTextStyle}"
+                     Margin="5 0"/>
+                </StackPanel>
+                <StackPanel>
+                    <Label Content="Ученая степень" />
+                    <TextBox Text="{Binding CurrentEmployee.AcademicDegree, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     IsReadOnly="True"
+                     Margin="5 0"/>
+                </StackPanel>
+                <Grid Margin="5 10" Height="30">
+                    <Button Content="Принять" Width="70" HorizontalAlignment="Left" Command="{Binding ApplyEmployeeCommand}"/>
+                    <Button Content="Отменить" Width="70" HorizontalAlignment="Right" Command="{Binding CancelEmployeeCommand}"/>
+                </Grid>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</UserControl>

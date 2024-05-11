@@ -8,6 +8,9 @@
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance Type=vm:StudentViewModel}"
              d:DesignHeight="550" d:DesignWidth="850">
+    <UserControl.InputBindings>
+        <KeyBinding Key="F5" Command="{Binding RefreshStudentsCommand}" />
+    </UserControl.InputBindings>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -42,7 +45,7 @@
                 <DataGridTextColumn Header="Почта" Binding="{Binding Email}"/>
                 <DataGridTextColumn Header="Улица проживания" Binding="{Binding Street}"/>
                 <DataGridTextColumn Header="Дата начала обучения" Binding="{Binding DateOfStudy}"/>
-                <DataGridTextColumn Header="Название группы" Binding="{Binding GroupName}"/>
+                <DataGridTextColumn Header="Название группы" Binding="{Binding Group.Name}"/>
             </DataGrid.Columns>
         </DataGrid>
         <GridSplitter Grid.Column="1" Grid.Row="1" ShowsPreview="False" Width="3"
@@ -109,7 +112,8 @@
                 </StackPanel>
                 <StackPanel>
                     <Label Content="Название группы" />
-                    <TextBox Text="{Binding CurrentStudent.GroupName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    <TextBox Text="{Binding CurrentStudent.Group.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             IsReadOnly="True"
                              Margin="5 0"/>
                 </StackPanel>
                 <Grid Margin="5 10" Height="30">

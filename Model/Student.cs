@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics.CodeAnalysis;
@@ -8,14 +9,12 @@ namespace Model
     public partial class Student : ObservableValidator
     {
         [Key]
-        [Required]
         [ObservableProperty]
         private long _numberOfRecordBook;
 
         [ObservableProperty]
         private byte[]? _photo;
 
-        [Required]
         [ObservableProperty]
         private bool _sabbaticalLeave = false;
 
@@ -61,18 +60,12 @@ namespace Model
         [ObservableProperty]
         private string _street = string.Empty;
 
-        [Required]
-        [NotifyDataErrorInfo]
         [ObservableProperty]
         private DateOnly _dateOfStudy;
-        
-        private string _groupName = string.Empty;
 
-        [NotMapped]
-        public string GroupName 
-        {
-            get => _groupName;
-            set => SetProperty(ref _groupName, value);
-        }
+        public long? GroupId { get; set; }
+
+        [ForeignKey("GroupId")]
+        public Group? Group { get; set; }
     }
 }

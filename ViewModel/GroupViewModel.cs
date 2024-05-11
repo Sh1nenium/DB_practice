@@ -17,7 +17,7 @@ namespace ViewModel
         private State _state = State.OnDefault;
 
         [ObservableProperty]
-        private bool _isEnabledStudentInfo = false;
+        private bool _isEnabledGroupInfo = false;
 
         [ObservableProperty]
         private bool _isEnabledDataGrid = true;
@@ -45,9 +45,17 @@ namespace ViewModel
 
         private void SwapState(State state)
         {
-            IsEnabledStudentInfo = !IsEnabledStudentInfo;
+            IsEnabledGroupInfo = !IsEnabledGroupInfo;
             IsEnabledDataGrid = !IsEnabledDataGrid;
             _state = state;
+        }
+
+        public StudentsInGroupViewModel CreateStudentsInGroupViewModel()
+        {
+            return new StudentsInGroupViewModel()
+            {
+                Group = CurrentGroup!
+            };
         }
 
         [RelayCommand]

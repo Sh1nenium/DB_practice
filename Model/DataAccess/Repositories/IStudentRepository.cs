@@ -6,6 +6,8 @@
     {
         public List<Student> GetAll();
 
+        public List<Student> GetAllByGroup(long groupId);
+
         public Task<Student?> GetByNumberOfRecordBook(long numberOfRecordBook);
 
         public Task Add(Student student);

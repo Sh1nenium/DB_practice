@@ -8,15 +8,12 @@ namespace Model
         [ObservableProperty]
         private long _id;
 
-        [MaxLength(40)]
+        [MaxLength(50)]
         [ObservableProperty]
         private string _name = string.Empty;
 
-        [MaxLength(50)]
+        [MaxLength(3000)]
         [ObservableProperty]
-        public string _specializationName = string.Empty;
-
-        [ObservableProperty]
-        private DateOnly _dateOfStudy;
+        private string _description = string.Empty;
     }
 }

@@ -4,6 +4,7 @@ using Model.DataAccess.Repositories;
 
 namespace ViewModel.UseCases
 {
+    using Microsoft.EntityFrameworkCore;
     using System.Threading.Tasks;
 
     public class StudentRepository : IStudentRepository
@@ -18,7 +19,13 @@ namespace ViewModel.UseCases
         public List<Student> GetAll()
         {
             using Context context = new();
-            return [.. context.Students];
+            return [.. context.Students.Include(x => x.Group)];
+        }
+
+        public List<Student> GetAllByGroup(long groupId)
+        {
+            using Context context = new();
+            return [.. context.Students.Where(x => x.GroupId == groupId)];
         }
 
         public async Task<Student?> GetByNumberOfRecordBook(long numberOfRecordBook)
