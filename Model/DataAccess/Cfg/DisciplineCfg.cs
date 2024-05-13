@@ -11,7 +11,8 @@ namespace Model.DataAccess.Cfg
                 .WithOne();
 
             builder.HasMany<TrainingManual>()
-                .WithOne();
+                .WithOne()
+                .HasForeignKey(x => x.DisciplineId);
         }
     }
 }

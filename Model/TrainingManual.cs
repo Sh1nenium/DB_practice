@@ -1,6 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Diagnostics.CodeAnalysis;
 
 namespace Model
 {
@@ -14,10 +13,13 @@ namespace Model
         private string _name = string.Empty;
 
         [Url]
+        [NotifyDataErrorInfo]
         [ObservableProperty]
         private string? _resourceLink = string.Empty;
 
         [ObservableProperty]
         private DateOnly _dateOfPublication;
+
+        public long DisciplineId {  get; set; }
     }
 }

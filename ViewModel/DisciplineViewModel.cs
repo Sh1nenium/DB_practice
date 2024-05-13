@@ -50,6 +50,14 @@ namespace ViewModel
             _state = state;
         }
 
+        public TrainingManualViewModel CreateTrainingManualViewModel()
+        {
+            return new TrainingManualViewModel()
+            {
+                Discipline = CurrentDiscipline!
+            };
+        }
+
         [RelayCommand]
         public void AddDiscipline()
         {
