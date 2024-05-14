@@ -70,8 +70,9 @@
                 </Grid>
             </StackPanel>
             <StackPanel Grid.Column="1" VerticalAlignment="Top">
-                <Button Content="Список заданий" Height="30" Margin="0 0 0 5" Click="" />
-                <Button Content="Учебные пособия" Height="30" Click="Open_New_Window_Discipline" />
+                <Button Content="Список заданий" Height="30" Margin="0 0 0 5" Click="Open_New_Window_Task" />
+                <Button Content="Учебные пособия" Height="30" Margin="0 0 0 5" Click="Open_New_Window_TrainingManual" />
+                <Button Content="Преподаватели" Height="30" Click="Open_New_Window_Employee" />
             </StackPanel>
         </Grid>
     </Grid>

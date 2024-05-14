@@ -50,6 +50,11 @@ namespace ViewModel
             _state = state;
         }
 
+        public void CreateStudentScoreViewModel()
+        {
+
+        }
+
         [RelayCommand]
         public void AddStudent()
         {

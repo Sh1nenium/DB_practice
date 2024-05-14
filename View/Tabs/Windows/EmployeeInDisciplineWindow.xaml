@@ -1,12 +1,12 @@
-﻿<Window x:Class="View.Tabs.Windows.StudentsInGroupWindow"
+﻿<Window x:Class="View.Tabs.Windows.EmployeeInDisciplineWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vm="clr-namespace:ViewModel;assembly=ViewModel"
         mc:Ignorable="d"
-        Title="{Binding Group.Name}" Height="450" Width="550"
-        d:DataContext="{d:DesignInstance Type=vm:StudentsInGroupViewModel}"
+        Title="{Binding Discipline.Name}" Height="450" Width="550"
+        d:DataContext="{d:DesignInstance Type=vm:EmployeeInDisciplineViewModel}"
         WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -19,8 +19,8 @@
                 <RowDefinition Height="20" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" Text="Студенты"/>
-            <ListBox Grid.Row="1" ItemsSource="{Binding Students}" SelectedItem="{Binding CurrentStudentInList}">
+            <TextBlock Grid.Row="0" Text="Сотрудники"/>
+            <ListBox Grid.Row="1" ItemsSource="{Binding Employee}" SelectedItem="{Binding CurrentEmployeeInList}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
@@ -33,16 +33,16 @@
             </ListBox>
         </Grid>
         <StackPanel Grid.Column="1" Margin="10 0" VerticalAlignment="Center">
-            <Button Content="Добавить" Margin="0 0 0 10" Command="{Binding AddStudentInGroupCommand}"/>
-            <Button Content="Удалить" Command="{Binding DeleteStudentInGroupCommand}"/>
+            <Button Content="Добавить" Margin="0 0 0 10" Command="{Binding AddEmployeeInDisciplineCommand}"/>
+            <Button Content="Удалить" Command="{Binding DeleteEmployeeInDisciplineCommand}"/>
         </StackPanel>
         <Grid Grid.Column="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="20" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" Text="Студенты в группе"/>
-            <ListBox Grid.Row="1" ItemsSource="{Binding StudentsInGroup}" SelectedItem="{Binding CurrentStudentInGroup}">
+            <TextBlock Grid.Row="0" Text="Назначенные сотрудники"/>
+            <ListBox Grid.Row="1" ItemsSource="{Binding EmployeeInDiscipline}" SelectedItem="{Binding CurrentEmployeeInDiscipline}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">

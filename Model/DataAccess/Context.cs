@@ -90,6 +90,45 @@ namespace Model.DataAccess
                 Name = "ОРБД",
                 Description = "Описание"
             });
+
+            modelBuilder.Entity<EmployeeDiscipline>().HasData(new EmployeeDiscipline
+            {
+                DisciplineId = 1,
+                EmployeeId = 1,
+                StartDateOfTeaching = DateOnly.FromDateTime(DateTime.Now)
+            });
+
+            modelBuilder.Entity<TrainingManual>().HasData(new TrainingManual
+            {
+                Id = 1,
+                Name = "Пособие",
+                ResourceLink = "http://web.com",
+                DateOfPublication = DateOnly.FromDateTime(DateTime.Now),
+                DisciplineId = 1
+            });
+
+            modelBuilder.Entity<Task>().HasData(new Task
+            {
+                Id = 1,
+                Name = "ДЗ ОРБД 1",
+                Description = "Описание",
+                DisciplineId = 1
+            });
+
+            modelBuilder.Entity<Score>().HasData(new Score
+            {
+                NumberOfRecordBook = 1,
+                TaskId = 1,
+                ScoreNumber = 5,
+            });
+
+            modelBuilder.Entity<GroupDistribution>().HasData(new GroupDistribution
+            {
+                GroupId = 1,
+                DisciplineId = 1,
+                HoursPerAcademicYear = 200,
+                DateOfDistribution = DateOnly.FromDateTime(DateTime.Now)
+            });
         }
     }
 }

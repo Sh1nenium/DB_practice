@@ -58,6 +58,22 @@ namespace ViewModel
             };
         }
 
+        public TaskViewModel CreateTaskViewModel()
+        {
+            return new TaskViewModel()
+            {
+                Discipline = CurrentDiscipline!
+            };
+        }
+
+        public EmployeeInDisciplineViewModel CreateEmployeeDisciplineViewModel()
+        {
+            return new EmployeeInDisciplineViewModel()
+            {
+                Discipline = CurrentDiscipline!
+            };
+        }
+
         [RelayCommand]
         public void AddDiscipline()
         {

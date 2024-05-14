@@ -50,6 +50,14 @@ namespace ViewModel
             _state = state;
         }
 
+        public DisciplineEmployeeViewModel CreateDisciplineEmployeeViewModel()
+        {
+            return new DisciplineEmployeeViewModel()
+            {
+                Employee = CurrentEmployee!
+            };
+        }
+
         [RelayCommand]
         public void AddEmployee()
         {

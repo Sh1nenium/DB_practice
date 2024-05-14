@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Model
 {
@@ -15,5 +16,10 @@ namespace Model
         [MaxLength(3000)]
         [ObservableProperty]
         private string _description = string.Empty;
+
+        public long DisciplineId { get; set; }
+
+        [ForeignKey("DisciplineId")]
+        public Discipline? Discipline { get; set; }
     }
 }

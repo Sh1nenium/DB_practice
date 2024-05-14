@@ -8,6 +8,8 @@
 
         public Task<Discipline?> GetById(long id);
 
+        public List<Discipline> GetAllByEmployee(long employeeId);
+
         public Task Add(Discipline group);
 
         public void Update(Discipline group);

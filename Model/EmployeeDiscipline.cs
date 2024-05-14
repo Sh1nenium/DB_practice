@@ -13,9 +13,9 @@ namespace Model
         private long _disciplineId;
 
         [ObservableProperty]
-        private DateOnly _startDateOfTeaching;
+        private DateOnly? _startDateOfTeaching;
 
         [ObservableProperty]
-        private DateOnly _endDateOfTeaching;
+        private DateOnly? _endDateOfTeaching;
     }
 }

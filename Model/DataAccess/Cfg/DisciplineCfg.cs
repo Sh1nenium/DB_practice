@@ -8,7 +8,8 @@ namespace Model.DataAccess.Cfg
         public void Configure(EntityTypeBuilder<Discipline> builder)
         {
             builder.HasMany<Task>()
-                .WithOne();
+                .WithOne()
+                .HasForeignKey(x => x.DisciplineId);
 
             builder.HasMany<TrainingManual>()
                 .WithOne()

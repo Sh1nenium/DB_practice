@@ -21,6 +21,21 @@ namespace ViewModel.UseCases
             return [.. context.Disciplines];
         }
 
+        public List<Discipline> GetAllByEmployee(long employeeId)
+        {
+            using Context context = new();
+            var query = context.Disciplines
+                .Join(context.EmployeeDisciplines,
+                    discipline => discipline.Id,
+                    employeeDiscipline => employeeDiscipline.EmployeeId,
+                    (discipline, employeeDiscipline) => new { Discipline = discipline, EmployeeDiscipline = employeeDiscipline })
+                .Where(x => x.EmployeeDiscipline.DisciplineId == employeeId)
+                .Select(x => x.Discipline)
+                .ToList();
+
+            return query;
+        }
+
         public async Task<Discipline?> GetById(long numberOfRecordBook)
         {
             using Context context = new();

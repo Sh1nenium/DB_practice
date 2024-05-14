@@ -55,7 +55,7 @@
                      Margin="5 0"/>
                 </StackPanel>
                 <StackPanel>
-                    <Label Content="Описание" />
+                    <Label Content="Дата публикации" />
                     <TextBox Text="{Binding CurrentTrainingManual.DateOfPublication, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                      Style="{StaticResource errorTextStyle}"
                      Margin="5 0"/>

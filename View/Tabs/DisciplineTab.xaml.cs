@@ -21,16 +21,40 @@ namespace View.Tabs
             DataContext = _viewModel;
         }
 
-        private void Open_New_Window_Discipline(object sender, RoutedEventArgs e)
+        private void Open_New_Window_TrainingManual(object sender, RoutedEventArgs e)
         {
             var windowViewModel = _viewModel.CreateTrainingManualViewModel();
 
-            var studentInGroupWindow = new TrainingManualWindow
+            var trainingManualWindow = new TrainingManualWindow
             {
                 DataContext = windowViewModel
             };
 
-            studentInGroupWindow.Show();
+            trainingManualWindow.Show();
+        }
+
+        private void Open_New_Window_Task(object sender, RoutedEventArgs e)
+        {
+            var windowViewModel = _viewModel.CreateTaskViewModel();
+
+            var taskWindow = new TaskWindow
+            {
+                DataContext = windowViewModel
+            };
+
+            taskWindow.Show();
+        }
+
+        private void Open_New_Window_Employee(object sender, RoutedEventArgs e)
+        {
+            var windowViewModel = _viewModel.CreateEmployeeDisciplineViewModel();
+
+            var employeeDisciplineWindow = new EmployeeInDisciplineWindow
+            {
+                DataContext = windowViewModel
+            };
+
+            employeeDisciplineWindow.Show();
         }
     }
 }

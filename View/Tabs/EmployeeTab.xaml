@@ -117,6 +117,7 @@
                     <Button Content="Отменить" Width="70" HorizontalAlignment="Right" Command="{Binding CancelEmployeeCommand}"/>
                 </Grid>
             </StackPanel>
+            <Button Grid.Column="1" VerticalAlignment="Top" Content="Дисциплины" Height="30" Click="Open_New_Window_Discipline" />
         </Grid>
     </Grid>
 </UserControl>

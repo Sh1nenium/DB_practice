@@ -128,6 +128,7 @@
                     <Button Content="Удалить" Command="{Binding DeleteImageCommand}"/>
                 </StackPanel>
                 <CheckBox Margin="0 10" Content="Академический отпуск" IsChecked="{Binding CurrentStudent.SabbaticalLeave}"/>
+                <Button VerticalAlignment="Top" Content="Оценки" Height="30" Click="Open_New_Window_Score"/>
             </StackPanel>
         </Grid>
     </Grid>
