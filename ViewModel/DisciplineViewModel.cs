@@ -52,26 +52,17 @@ namespace ViewModel
 
         public TrainingManualViewModel CreateTrainingManualViewModel()
         {
-            return new TrainingManualViewModel()
-            {
-                Discipline = CurrentDiscipline!
-            };
+            return new TrainingManualViewModel(CurrentDiscipline!);
         }
 
         public TaskViewModel CreateTaskViewModel()
         {
-            return new TaskViewModel()
-            {
-                Discipline = CurrentDiscipline!
-            };
+            return new TaskViewModel(CurrentDiscipline!);
         }
 
         public EmployeeInDisciplineViewModel CreateEmployeeDisciplineViewModel()
         {
-            return new EmployeeInDisciplineViewModel()
-            {
-                Discipline = CurrentDiscipline!
-            };
+            return new EmployeeInDisciplineViewModel(CurrentDiscipline!);
         }
 
         [RelayCommand]

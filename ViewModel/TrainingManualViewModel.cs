@@ -17,7 +17,7 @@ namespace ViewModel
         private State _state = State.OnDefault;
 
         [ObservableProperty]
-        private Discipline _discipline = new() { Id = 1 };
+        private Discipline _discipline;
 
         [ObservableProperty]
         private bool _isEnabledTrainingManualInfo = false;
@@ -134,8 +134,10 @@ namespace ViewModel
             }
         }
 
-        public TrainingManualViewModel()
+        public TrainingManualViewModel(Discipline discipline)
         {
+            Discipline = discipline;
+
             TrainingManuals = new ObservableCollection<TrainingManual>(_trainingManualRepository.GetByDiscipline(Discipline.Id));
         }
     }

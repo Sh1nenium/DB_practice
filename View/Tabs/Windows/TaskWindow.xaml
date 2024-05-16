@@ -59,6 +59,7 @@
                     <Button Content="Отменить" Width="70" HorizontalAlignment="Right" Command="{Binding CancelTaskCommand}"/>
                 </Grid>
             </StackPanel>
+            <Button Grid.Column="1" VerticalAlignment="Top" Content="Оценки" Height="30" Click="Open_New_Window_Score"/>
         </Grid>
     </Grid>
 </Window>

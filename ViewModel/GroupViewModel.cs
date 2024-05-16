@@ -52,10 +52,7 @@ namespace ViewModel
 
         public StudentsInGroupViewModel CreateStudentsInGroupViewModel()
         {
-            return new StudentsInGroupViewModel()
-            {
-                Group = CurrentGroup!
-            };
+            return new StudentsInGroupViewModel(CurrentGroup!);
         }
 
         [RelayCommand]

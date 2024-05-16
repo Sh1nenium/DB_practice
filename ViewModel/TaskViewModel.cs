@@ -16,7 +16,7 @@ namespace ViewModel
         private State _state = State.OnDefault;
 
         [ObservableProperty]
-        private Discipline _discipline = new() { Id = 1 };
+        private Discipline _discipline;
 
         [ObservableProperty]
         private bool _isEnabledTaskInfo = false;
@@ -50,6 +50,11 @@ namespace ViewModel
             IsEnabledTaskInfo = !IsEnabledTaskInfo;
             IsEnabledDataGrid = !IsEnabledDataGrid;
             _state = state;
+        }
+
+        public ScoreViewModel CreateScoreViewModel()
+        {
+            return new ScoreViewModel(CurrentTask!);
         }
 
         [RelayCommand]
@@ -133,8 +138,10 @@ namespace ViewModel
             }
         }
 
-        public TaskViewModel()
+        public TaskViewModel(Discipline discipline)
         {
+            Discipline = discipline;
+
             Tasks = new ObservableCollection<Task>(_taskRepository.GetByDiscipline(Discipline.Id));
         }
     }

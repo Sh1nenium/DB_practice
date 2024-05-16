@@ -46,7 +46,7 @@ namespace ViewModel
             return CurrentEmployeeInDiscipline != null;
         }
 
-        public Discipline Discipline { get; set; } = new Discipline() { Id = 1 };
+        public Discipline Discipline { get; set; }
 
 
         [RelayCommand(CanExecute = nameof(CurrentEmployeeInListIsNotNull))]
@@ -75,8 +75,10 @@ namespace ViewModel
             Employee.Add(CurrentEmployeeInDiscipline!);
         }
 
-        public EmployeeInDisciplineViewModel()
+        public EmployeeInDisciplineViewModel(Discipline discipline)
         {
+            Discipline = discipline;
+
             EmployeeInDiscipline = new ObservableCollection<Employee>(_employeeRepository.GetAllByDiscipline(Discipline.Id));
 
             Employee = new ObservableCollection<Employee>(_employeeRepository.GetAll().Except(EmployeeInDiscipline, new EmployeeComparer()));

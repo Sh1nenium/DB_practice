@@ -2,6 +2,7 @@
 using Model;
 using Task = System.Threading.Tasks.Task;
 using Model.DataAccess.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace ViewModel.UseCases
 {
@@ -17,7 +18,7 @@ namespace ViewModel.UseCases
         public List<Model.Task> GetAll()
         {
             using Context context = new();
-            return [.. context.Tasks];
+            return [.. context.Tasks.Include(x => x.Discipline)];
         }
 
         public async Task<Model.Task?> GetById(long id)
@@ -29,7 +30,7 @@ namespace ViewModel.UseCases
         public List<Model.Task> GetByDiscipline(long disciplineId)
         {
             using Context context = new();
-            return [.. context.Tasks.Where(x => x.DisciplineId == disciplineId)];
+            return [.. context.Tasks.Where(x => x.DisciplineId == disciplineId).Include(x => x.Discipline)];
         }
 
         public async Task Remove(long id)

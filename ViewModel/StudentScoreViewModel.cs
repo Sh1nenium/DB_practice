@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using Model;
 using Model.DataAccess.Repositories;
+using System.Collections.ObjectModel;
 using ViewModel.Abstrations;
 using ViewModel.UseCases;
 
@@ -11,13 +12,15 @@ namespace ViewModel
         private IScoreRepository _scoreRepository = new ScoreRepository();
 
         [ObservableProperty]
-        private List<Score> _scores;
+        private ObservableCollection<Score> _scores;
 
-        public Student Student { get; set; } = new() { NumberOfRecordBook = 1 };
+        public Student Student { get; set; }
 
-        public StudentScoreViewModel()
+        public StudentScoreViewModel(Student student)
         {
-            Scores = _scoreRepository.GetAllByStudent(Student.NumberOfRecordBook);
+            Student = student;
+
+            Scores = new ObservableCollection<Score>(_scoreRepository.GetAllByStudent(Student.NumberOfRecordBook));
         }
     }
 }

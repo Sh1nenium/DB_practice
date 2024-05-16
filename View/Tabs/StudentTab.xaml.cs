@@ -35,7 +35,7 @@ namespace View.Tabs
         {
             var windowViewModel = _viewModel.CreateStudentScoreViewModel();
 
-            var studentInGroupWindow = new StudentsInGroupWindow
+            var studentInGroupWindow = new StudentScoreWindow
             {
                 DataContext = windowViewModel
             };

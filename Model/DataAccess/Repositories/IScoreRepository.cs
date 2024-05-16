@@ -8,6 +8,8 @@
 
         public Task<Score?> GetById(long id);
 
+        public List<Score> GetAllByDiscipline(long disciplineId);
+
         public List<Score> GetAllByStudent(long numberOfRecordBook);
 
         public Task Add(Score score);

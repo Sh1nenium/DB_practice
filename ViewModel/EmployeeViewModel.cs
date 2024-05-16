@@ -52,10 +52,7 @@ namespace ViewModel
 
         public DisciplineEmployeeViewModel CreateDisciplineEmployeeViewModel()
         {
-            return new DisciplineEmployeeViewModel()
-            {
-                Employee = CurrentEmployee!
-            };
+            return new DisciplineEmployeeViewModel(CurrentEmployee!);
         }
 
         [RelayCommand]

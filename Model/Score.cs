@@ -15,7 +15,7 @@ namespace Model
         public Student? Student { get; set; }
 
         [ObservableProperty]
-        private long _taskId;
+        private long? _taskId;
 
         [ForeignKey("TaskId")]
         public Task? Task { get; set; }

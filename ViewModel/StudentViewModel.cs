@@ -50,9 +50,9 @@ namespace ViewModel
             _state = state;
         }
 
-        public void CreateStudentScoreViewModel()
+        public StudentScoreViewModel CreateStudentScoreViewModel()
         {
-
+            return new StudentScoreViewModel(CurrentStudent!);
         }
 
         [RelayCommand]

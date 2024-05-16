@@ -1,7 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Model.DataAccess.Cfg;
-using System.Resources;
 
 namespace Model.DataAccess
 {
@@ -44,7 +42,7 @@ namespace Model.DataAccess
             modelBuilder.ApplyConfiguration(new EmployeeDisciplineCfg());
             modelBuilder.ApplyConfiguration(new GroupDistributionCfg());
             modelBuilder.ApplyConfiguration(new DisciplineCfg());
-            modelBuilder.ApplyConfiguration(new ScoreCfg());
+            //modelBuilder.ApplyConfiguration(new ScoreCfg());
 
 
             modelBuilder.Entity<Student>().HasData(new Student
