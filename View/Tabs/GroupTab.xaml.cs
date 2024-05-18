@@ -1,15 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using View.Tabs.Windows;
 using ViewModel;
 
@@ -31,11 +21,23 @@ namespace View.Tabs
             DataContext = _viewModel;
         }
 
-        private void Open_New_Window(object sender, RoutedEventArgs e)
+        private void Open_New_Window_Student(object sender, RoutedEventArgs e)
         {
             var windowViewModel = _viewModel.CreateStudentsInGroupViewModel();
 
             var studentInGroupWindow = new StudentsInGroupWindow
+            {
+                DataContext = windowViewModel
+            };
+
+            studentInGroupWindow.Show();
+        }
+
+        private void Open_New_Window_Discipline(object sender, RoutedEventArgs e)
+        {
+            var windowViewModel = _viewModel.CreateGroupDistributionViewModel();
+
+            var studentInGroupWindow = new GroupDistributionWindow
             {
                 DataContext = windowViewModel
             };

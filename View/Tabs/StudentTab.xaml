@@ -64,7 +64,7 @@
                 </StackPanel>
                 <StackPanel>
                     <Label Content="Имя" />
-                    <TextBox Text="{Binding CurrentStudent.Name, ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    <TextBox Text="{Binding CurrentStudent.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                              Style="{StaticResource errorTextStyle}"
                              Margin="5 0"/>
                 </StackPanel>

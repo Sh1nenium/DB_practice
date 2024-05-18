@@ -5,7 +5,6 @@ using Model;
 namespace ViewModel.UseCases
 {
     using Microsoft.EntityFrameworkCore;
-    using Microsoft.EntityFrameworkCore.Internal;
     using System.Threading.Tasks;
 
     public class ScoreRepository : IScoreRepository
@@ -23,10 +22,13 @@ namespace ViewModel.UseCases
             return [.. context.Scores.Include(x => x.Task).Include(x => x.Student)];
         }
 
-        public async Task<Score?> GetById(long id)
+        public async Task<Score?> GetById(long numberOfRecordBook, long taskId)
         {
             using Context context = new();
-            return await context.Scores.FindAsync(id);
+
+            return await context
+                .Scores
+                .FindAsync(numberOfRecordBook, taskId);
         }
 
         public List<Score> GetAllByDiscipline(long disciplineId)

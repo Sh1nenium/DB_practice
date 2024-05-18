@@ -1,0 +1,40 @@
+﻿<Window x:Class="View.Tabs.Windows.GroupDistributionWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:ViewModel;assembly=ViewModel"
+        mc:Ignorable="d"
+        Title="{Binding Group.Name}" Height="450" Width="650"
+        d:DataContext="{d:DesignInstance Type=vm:GroupDistributionViewModel}"
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <ListBox Grid.Column="0" 
+                 ItemsSource="{Binding Disciplines}" 
+                 SelectedItem="{Binding CurrentDiscipline}" 
+                 DisplayMemberPath="Name"/>
+        <StackPanel Grid.Column="1" Margin="10 0" VerticalAlignment="Center">
+            <StackPanel IsEnabled="{Binding IsEnabled}">
+                <TextBlock Margin="0 0 0 5" Text="Часов в учебный год" TextAlignment="Center" TextWrapping="Wrap"/>
+                <TextBox Text="{Binding HourPerAcademicYearTextBox, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 0 10"/>
+            </StackPanel>
+            <Button Content="Добавить" Margin="0 0 0 10" Command="{Binding AddDisciplineInGroupCommand}"/>
+            <Button Content="Удалить" Command="{Binding DeleteDisciplineInGroupCommand}"/>
+        </StackPanel>
+        <DataGrid Grid.Column="2"
+                  ItemsSource="{Binding GroupDistributions}"
+                  SelectedItem="{Binding CurrentGroupDistribution}"
+                  AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Дисциплина" IsReadOnly="True" Binding="{Binding Discipline.Name}"/>
+                <DataGridTextColumn Header="Академический часов в год" IsReadOnly="True" Binding="{Binding HoursPerAcademicYear}"/>
+                <DataGridTextColumn Header="Дата назначения" IsReadOnly="True" Binding="{Binding DateOfDistribution}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

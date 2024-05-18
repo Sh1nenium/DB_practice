@@ -81,7 +81,9 @@ namespace ViewModel
 
             DisciplinesInEmployee = new ObservableCollection<Discipline>(_disciplineRepository.GetAllByEmployee(Employee.Id));
 
-            Disciplines = new ObservableCollection<Discipline>(_disciplineRepository.GetAll().Except(DisciplinesInEmployee, new DisciplineComparer()));
+            Disciplines = new ObservableCollection<Discipline>(_disciplineRepository
+                .GetAll()
+                .Except(DisciplinesInEmployee, new DisciplineComparer()));
         }
     }
 

@@ -6,7 +6,7 @@
     {
         public List<Score> GetAll();
 
-        public Task<Score?> GetById(long id);
+        public Task<Score?> GetById(long numberOfRecordBook, long taskId);
 
         public List<Score> GetAllByDiscipline(long disciplineId);
 

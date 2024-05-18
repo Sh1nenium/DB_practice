@@ -27,6 +27,7 @@ namespace Model.DataAccess
         {
             var connectionString = "host=localhost;port=5000;Database=DBTest;Username=postgres;Password=Sh1nen";
             optionsBuilder.UseNpgsql(connectionString)
+                .LogTo(message => System.Diagnostics.Debug.WriteLine(message))
                 .UseAllCheckConstraints();
         }
 
@@ -38,12 +39,11 @@ namespace Model.DataAccess
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //modelBuilder.ApplyConfiguration(new StudentCfg());
             modelBuilder.ApplyConfiguration(new EmployeeDisciplineCfg());
-            modelBuilder.ApplyConfiguration(new GroupDistributionCfg());
             modelBuilder.ApplyConfiguration(new DisciplineCfg());
+            //modelBuilder.ApplyConfiguration(new StudentCfg());
+            //modelBuilder.ApplyConfiguration(new GroupDistributionCfg());
             //modelBuilder.ApplyConfiguration(new ScoreCfg());
-
 
             modelBuilder.Entity<Student>().HasData(new Student
             {

@@ -55,6 +55,11 @@ namespace ViewModel
             return new StudentsInGroupViewModel(CurrentGroup!);
         }
 
+        public GroupDistributionViewModel CreateGroupDistributionViewModel()
+        {
+            return new GroupDistributionViewModel(CurrentGroup!);
+        }
+
         [RelayCommand]
         public void AddGroup()
         {
