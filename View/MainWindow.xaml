@@ -5,7 +5,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:tabs="clr-namespace:View.Tabs"
         mc:Ignorable="d"
-        DataContext="{StaticResource MainWindowViewModel}"
         Title="Электронная кафедра" MinHeight="550" Width="850"
         WindowStartupLocation="CenterScreen">
     <Grid>

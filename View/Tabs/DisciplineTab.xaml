@@ -23,6 +23,7 @@
             <Button Content="Добавить" Width="70" Margin="5 0" Command="{Binding AddDisciplineCommand}"/>
             <Button Content="Изменить" Width="70" Margin="5 0" Command="{Binding EditDisciplineCommand}"/>
             <Button Content="Удалить" Width="70" Margin="5 0" Command="{Binding DeleteDisciplineCommand}"/>
+            <TextBox Margin="5" MinWidth="200" MaxWidth="250" Text="{Binding SearchString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         </StackPanel>
 
         <DataGrid Grid.Row="1"

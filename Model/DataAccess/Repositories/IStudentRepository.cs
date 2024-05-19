@@ -8,6 +8,8 @@
 
         public List<Student> GetAllByGroup(long groupId);
 
+        public List<Student> SearchAllByString(string searchString);
+
         public Task<Student?> GetByNumberOfRecordBook(long numberOfRecordBook);
 
         public Task Add(Student student);

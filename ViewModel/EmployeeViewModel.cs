@@ -8,6 +8,7 @@ using CommunityToolkit.Mvvm.Input;
 
 namespace ViewModel
 {
+    using System.Text.RegularExpressions;
     using System.Threading.Tasks;
 
     public partial class EmployeeViewModel : BaseViewModel
@@ -28,9 +29,24 @@ namespace ViewModel
         [ObservableProperty]
         private Employee? _currentEmployee = null;
 
+
         partial void OnCurrentEmployeeChanged(Employee? value)
         {
             EditEmployeeCommand.NotifyCanExecuteChanged();
+        }
+
+        [ObservableProperty]
+        private string _searchString = string.Empty;
+
+        partial void OnSearchStringChanged(string value)
+        {
+            if (string.IsNullOrEmpty(value))
+            {
+                Employee = new ObservableCollection<Employee>(_employeeRepository.GetAll());
+                return;
+            }
+
+            Employee = new ObservableCollection<Employee>(_employeeRepository.SearchAllByString(value));
         }
 
         private bool EmployeeNotNull()

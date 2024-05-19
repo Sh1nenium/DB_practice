@@ -28,6 +28,20 @@ namespace ViewModel
         [ObservableProperty]
         private Student? _currentStudent = null;
 
+        [ObservableProperty]
+        private string _searchString = string.Empty;
+
+        partial void OnSearchStringChanged(string value)
+        {
+            if (string.IsNullOrEmpty(value))
+            {
+                Students = new ObservableCollection<Student>(_studentRepository.GetAll());
+                return;
+            }
+
+            Students = new ObservableCollection<Student>(_studentRepository.SearchAllByString(value));
+        }
+
         partial void OnCurrentStudentChanged(Student? value)
         {
             EditStudentCommand.NotifyCanExecuteChanged();

@@ -50,6 +50,20 @@ namespace ViewModel
             _state = state;
         }
 
+        [ObservableProperty]
+        private string _searchString = string.Empty;
+
+        partial void OnSearchStringChanged(string value)
+        {
+            if (string.IsNullOrEmpty(value))
+            {
+                Disciplines = new ObservableCollection<Discipline>(_disciplineRepository.GetAll());
+                return;
+            }
+
+            Disciplines = new ObservableCollection<Discipline>(_disciplineRepository.SearchAllByString(value));
+        }
+
         public TrainingManualViewModel CreateTrainingManualViewModel()
         {
             return new TrainingManualViewModel(CurrentDiscipline!);

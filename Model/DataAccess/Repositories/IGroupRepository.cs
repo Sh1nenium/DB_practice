@@ -8,6 +8,8 @@
 
         public Task<Group?> GetById(long id);
 
+        public List<Group> SearchAllByString(string searchString);
+
         public Task Add(Group group);
 
         public void Update(Group group);

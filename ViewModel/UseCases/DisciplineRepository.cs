@@ -21,6 +21,14 @@ namespace ViewModel.UseCases
             return [.. context.Disciplines];
         }
 
+        public List<Discipline> SearchAllByString(string searchString)
+        {
+            using Context context = new();
+            return [.. context.Disciplines
+                .Where(x => (x.Name)
+                .Contains(searchString))];
+        }
+
         public List<Discipline> GetAllByEmployee(long employeeId)
         {
             using Context context = new();
