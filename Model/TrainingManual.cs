@@ -9,6 +9,7 @@ namespace Model
         private long _id;
 
         [MaxLength(100)]
+        [NotifyDataErrorInfo]
         [ObservableProperty]
         private string _name = string.Empty;
 

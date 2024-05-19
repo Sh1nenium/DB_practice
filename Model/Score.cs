@@ -21,6 +21,7 @@ namespace Model
         public Task? Task { get; set; }
 
         [Range(0, 20)]
+        [NotifyDataErrorInfo]
         [ObservableProperty]
         private int _scoreNumber;
     }
