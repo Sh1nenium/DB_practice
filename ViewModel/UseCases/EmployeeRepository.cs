@@ -20,11 +20,33 @@ namespace ViewModel.UseCases
             using Context context = new();
             return [.. context.Employee];
         }
+        public List<Employee> SearchAllByString(string searchString)
+        {
+            using Context context = new();
+            return [.. context.Employee
+                .Where(x => (x.Name + ' ' + x.Surname + ' ' + x.Patronymic + x.AcademicDegree)
+                .Contains(searchString))];
+        }
 
         public async Task<Employee?> GetById(long numberOfRecordBook)
         {
             using Context context = new();
             return await context.Employee.FindAsync(numberOfRecordBook);
+        }
+
+        public List<Employee> GetAllByDiscipline(long disciplineId)
+        {
+            using Context context = new();
+            var query = context.Employee
+                .Join(context.EmployeeDisciplines,
+                    employee => employee.Id,
+                    employeeDiscipline => employeeDiscipline.EmployeeId,
+                    (employee, employeeDiscipline) => new { Employee = employee, EmployeeDiscipline = employeeDiscipline })
+                .Where(x => x.EmployeeDiscipline.DisciplineId == disciplineId)
+                .Select(x => x.Employee)
+                .ToList();
+
+            return query;
         }
 
         public async Task Remove(long id)

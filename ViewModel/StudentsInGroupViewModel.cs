@@ -44,7 +44,7 @@ namespace ViewModel
             return CurrentStudentInGroup != null;
         }
 
-        public Group Group { get; set; } = new Group() { Id = 1 };
+        public Group Group { get; set; }
 
 
         [RelayCommand(CanExecute = nameof(CurrentStudentInListIsNotNull))]
@@ -67,8 +67,10 @@ namespace ViewModel
             StudentsInGroup.Remove(CurrentStudentInGroup);
         }
 
-        public StudentsInGroupViewModel()
+        public StudentsInGroupViewModel(Group group)
         {
+            Group = group;
+
             StudentsInGroup = new ObservableCollection<Student>(_studentRepository.GetAllByGroup(Group.Id));
 
             Students = new ObservableCollection<Student>(_studentRepository.GetAll().Except(StudentsInGroup, new StudentComparer()));

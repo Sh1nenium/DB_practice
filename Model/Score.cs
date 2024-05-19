@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Model
 {
@@ -10,10 +11,17 @@ namespace Model
         [ObservableProperty]
         private long _numberOfRecordBook;
 
+        [ForeignKey("NumberOfRecordBook")]
+        public Student? Student { get; set; }
+
         [ObservableProperty]
-        private long _taskId;
+        private long? _taskId;
+
+        [ForeignKey("TaskId")]
+        public Task? Task { get; set; }
 
         [Range(0, 20)]
+        [NotifyDataErrorInfo]
         [ObservableProperty]
         private int _scoreNumber;
     }

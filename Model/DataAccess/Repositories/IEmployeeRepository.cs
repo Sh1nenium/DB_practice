@@ -8,6 +8,10 @@
 
         public Task<Employee?> GetById(long id);
 
+        public List<Employee> SearchAllByString(string searchString);
+
+        public List<Employee> GetAllByDiscipline(long disciplineId);
+
         public Task Add(Employee employee);
 
         public void Update(Employee employee);

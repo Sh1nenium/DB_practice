@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Model
 {
@@ -11,6 +12,9 @@ namespace Model
 
         [ObservableProperty]
         private long _disciplineId;
+
+        [ForeignKey("DisciplineId")]
+        public Discipline? Discipline { get; set; }
 
         [ObservableProperty]
         private int _hoursPerAcademicYear;

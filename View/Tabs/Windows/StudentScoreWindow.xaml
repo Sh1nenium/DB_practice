@@ -1,0 +1,22 @@
+﻿<Window x:Class="View.Tabs.Windows.StudentScoreWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:ViewModel;assembly=ViewModel"
+        mc:Ignorable="d"
+        Title="{Binding Student.Name}" Height="450" Width="350"
+        d:DataContext="{d:DesignInstance Type=vm:StudentScoreViewModel}"
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <DataGrid ItemsSource="{Binding Scores}" 
+                  IsReadOnly="True" 
+                  AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Задание" Binding="{Binding Task.Name}"/>
+                <DataGridTextColumn Header="Дисциплина" Binding="{Binding Task.Discipline.Name}"/>
+                <DataGridTextColumn Header="Оценка" Binding="{Binding ScoreNumber}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

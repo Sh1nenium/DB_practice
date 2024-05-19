@@ -50,12 +50,28 @@ namespace ViewModel
             _state = state;
         }
 
+        [ObservableProperty]
+        private string _searchString = string.Empty;
+
+        partial void OnSearchStringChanged(string value)
+        {
+            if (string.IsNullOrEmpty(value))
+            {
+                Groups = new ObservableCollection<Group>(_groupRepository.GetAll());
+                return;
+            }
+
+            Groups = new ObservableCollection<Group>(_groupRepository.SearchAllByString(value));
+        }
+
         public StudentsInGroupViewModel CreateStudentsInGroupViewModel()
         {
-            return new StudentsInGroupViewModel()
-            {
-                Group = CurrentGroup!
-            };
+            return new StudentsInGroupViewModel(CurrentGroup!);
+        }
+
+        public GroupDistributionViewModel CreateGroupDistributionViewModel()
+        {
+            return new GroupDistributionViewModel(CurrentGroup!);
         }
 
         [RelayCommand]

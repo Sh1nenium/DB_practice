@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using System.Windows;
 using System.Windows.Controls;
+using View.Tabs.Windows;
 using ViewModel;
 
 namespace View.Tabs
@@ -28,6 +29,18 @@ namespace View.Tabs
             {
                 _viewModel.UploadImage(openFileDialog.FileName);
             }
+        }
+
+        private void Open_New_Window_Score(object sender, RoutedEventArgs e)
+        {
+            var windowViewModel = _viewModel.CreateStudentScoreViewModel();
+
+            var studentInGroupWindow = new StudentScoreWindow
+            {
+                DataContext = windowViewModel
+            };
+
+            studentInGroupWindow.Show();
         }
     }
 }

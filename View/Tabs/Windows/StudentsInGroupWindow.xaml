@@ -14,31 +14,45 @@
             <ColumnDefinition Width="100" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <ListBox Grid.Column="0" ItemsSource="{Binding Students}" SelectedItem="{Binding CurrentStudentInList}">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding Name}" Margin="0 0 3 0"/>
-                        <TextBlock Text="{Binding Surname}" Margin="0 0 3 0"/>
-                        <TextBlock Text="{Binding Patronymic}"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Text="Студенты"/>
+            <ListBox Grid.Row="1" ItemsSource="{Binding Students}" SelectedItem="{Binding CurrentStudentInList}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Name}" Margin="0 0 3 0"/>
+                            <TextBlock Text="{Binding Surname}" Margin="0 0 3 0"/>
+                            <TextBlock Text="{Binding Patronymic}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
         <StackPanel Grid.Column="1" Margin="10 0" VerticalAlignment="Center">
             <Button Content="Добавить" Margin="0 0 0 10" Command="{Binding AddStudentInGroupCommand}"/>
             <Button Content="Удалить" Command="{Binding DeleteStudentInGroupCommand}"/>
         </StackPanel>
-        <ListBox Grid.Column="2" ItemsSource="{Binding StudentsInGroup}" SelectedItem="{Binding CurrentStudentInGroup}">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding Name}" Margin="0 0 3 0"/>
-                        <TextBlock Text="{Binding Surname}" Margin="0 0 3 0"/>
-                        <TextBlock Text="{Binding Patronymic}"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+        <Grid Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Text="Студенты в группе"/>
+            <ListBox Grid.Row="1" ItemsSource="{Binding StudentsInGroup}" SelectedItem="{Binding CurrentStudentInGroup}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Name}" Margin="0 0 3 0"/>
+                            <TextBlock Text="{Binding Surname}" Margin="0 0 3 0"/>
+                            <TextBlock Text="{Binding Patronymic}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
     </Grid>
 </Window>

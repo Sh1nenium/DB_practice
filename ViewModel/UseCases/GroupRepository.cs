@@ -21,6 +21,14 @@ namespace ViewModel.UseCases
             return [.. context.Groups];
         }
 
+        public List<Group> SearchAllByString(string searchString)
+        {
+            using Context context = new();
+            return [.. context.Groups
+                .Where(x => (x.Name + ' ' + x.SpecializationName)
+                .Contains(searchString))];
+        }
+
         public async Task<Group?> GetById(long id)
         {
             using Context context = new();

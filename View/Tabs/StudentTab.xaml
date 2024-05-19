@@ -25,6 +25,7 @@
             <Button Content="Добавить" Width="70" Margin="5 0" Command="{Binding AddStudentCommand}"/>
             <Button Content="Изменить" Width="70" Margin="5 0" Command="{Binding EditStudentCommand}"/>
             <Button Content="Удалить" Width="70" Margin="5 0" Command="{Binding DeleteStudentCommand}"/>
+            <TextBox Margin="5" MinWidth="200" MaxWidth="250" Text="{Binding SearchString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         </StackPanel>
         
         <DataGrid Grid.Row="1"
@@ -64,7 +65,7 @@
                 </StackPanel>
                 <StackPanel>
                     <Label Content="Имя" />
-                    <TextBox Text="{Binding CurrentStudent.Name, ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    <TextBox Text="{Binding CurrentStudent.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                              Style="{StaticResource errorTextStyle}"
                              Margin="5 0"/>
                 </StackPanel>
@@ -128,6 +129,7 @@
                     <Button Content="Удалить" Command="{Binding DeleteImageCommand}"/>
                 </StackPanel>
                 <CheckBox Margin="0 10" Content="Академический отпуск" IsChecked="{Binding CurrentStudent.SabbaticalLeave}"/>
+                <Button VerticalAlignment="Top" Content="Оценки" Height="30" Click="Open_New_Window_Score"/>
             </StackPanel>
         </Grid>
     </Grid>

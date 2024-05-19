@@ -22,6 +22,7 @@
             <Button Content="Добавить" Width="70" Margin="5 0" Command="{Binding AddEmployeeCommand}"/>
             <Button Content="Изменить" Width="70" Margin="5 0" Command="{Binding EditEmployeeCommand}"/>
             <Button Content="Удалить" Width="70" Margin="5 0" Command="{Binding DeleteEmployeeCommand}"/>
+            <TextBox Margin="5" MinWidth="200" MaxWidth="250" Text="{Binding SearchString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         </StackPanel>
 
         <DataGrid Grid.Row="1"
@@ -117,6 +118,7 @@
                     <Button Content="Отменить" Width="70" HorizontalAlignment="Right" Command="{Binding CancelEmployeeCommand}"/>
                 </Grid>
             </StackPanel>
+            <Button Grid.Column="1" VerticalAlignment="Top" Content="Дисциплины" Height="30" Click="Open_New_Window_Discipline" />
         </Grid>
     </Grid>
 </UserControl>

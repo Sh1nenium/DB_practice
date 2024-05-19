@@ -45,6 +45,14 @@ namespace ViewModel.UseCases
             context.SaveChanges();
         }
 
+        public List<Student> SearchAllByString(string searchString)
+        {
+            using Context context = new();
+            return [.. context.Students
+                .Where(x => (x.Name + ' ' + x.Surname + ' ' + x.Patronymic + x.SpecializationName)
+                .Contains(searchString))];
+        }
+
         public void Update(Student student)
         {
             using Context context = new();

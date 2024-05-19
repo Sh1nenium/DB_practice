@@ -7,11 +7,9 @@ namespace Model.DataAccess.Cfg
     {
         public void Configure(EntityTypeBuilder<Discipline> builder)
         {
-            builder.HasMany<Task>()
-                .WithOne();
-
             builder.HasMany<TrainingManual>()
-                .WithOne();
+                .WithOne()
+                .HasForeignKey(x => x.DisciplineId);
         }
     }
 }

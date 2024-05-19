@@ -1,7 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Model.DataAccess.Cfg;
-using System.Resources;
 
 namespace Model.DataAccess
 {
@@ -29,6 +27,7 @@ namespace Model.DataAccess
         {
             var connectionString = "host=localhost;port=5000;Database=DBTest;Username=postgres;Password=Sh1nen";
             optionsBuilder.UseNpgsql(connectionString)
+                .LogTo(message => System.Diagnostics.Debug.WriteLine(message))
                 .UseAllCheckConstraints();
         }
 
@@ -40,12 +39,11 @@ namespace Model.DataAccess
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //modelBuilder.ApplyConfiguration(new StudentCfg());
             modelBuilder.ApplyConfiguration(new EmployeeDisciplineCfg());
-            modelBuilder.ApplyConfiguration(new GroupDistributionCfg());
             modelBuilder.ApplyConfiguration(new DisciplineCfg());
-            modelBuilder.ApplyConfiguration(new ScoreCfg());
-
+            //modelBuilder.ApplyConfiguration(new StudentCfg());
+            //modelBuilder.ApplyConfiguration(new GroupDistributionCfg());
+            //modelBuilder.ApplyConfiguration(new ScoreCfg());
 
             modelBuilder.Entity<Student>().HasData(new Student
             {
@@ -89,6 +87,45 @@ namespace Model.DataAccess
                 Id = 1,
                 Name = "ОРБД",
                 Description = "Описание"
+            });
+
+            modelBuilder.Entity<EmployeeDiscipline>().HasData(new EmployeeDiscipline
+            {
+                DisciplineId = 1,
+                EmployeeId = 1,
+                StartDateOfTeaching = DateOnly.FromDateTime(DateTime.Now)
+            });
+
+            modelBuilder.Entity<TrainingManual>().HasData(new TrainingManual
+            {
+                Id = 1,
+                Name = "Пособие",
+                ResourceLink = "http://web.com",
+                DateOfPublication = DateOnly.FromDateTime(DateTime.Now),
+                DisciplineId = 1
+            });
+
+            modelBuilder.Entity<Task>().HasData(new Task
+            {
+                Id = 1,
+                Name = "ДЗ ОРБД 1",
+                Description = "Описание",
+                DisciplineId = 1
+            });
+
+            modelBuilder.Entity<Score>().HasData(new Score
+            {
+                NumberOfRecordBook = 1,
+                TaskId = 1,
+                ScoreNumber = 5,
+            });
+
+            modelBuilder.Entity<GroupDistribution>().HasData(new GroupDistribution
+            {
+                GroupId = 1,
+                DisciplineId = 1,
+                HoursPerAcademicYear = 200,
+                DateOfDistribution = DateOnly.FromDateTime(DateTime.Now)
             });
         }
     }

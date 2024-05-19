@@ -13,7 +13,5 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
-        
-        <vm:MainWindowViewModel x:Key="MainWindowViewModel"/>
     </Application.Resources>
 </Application>

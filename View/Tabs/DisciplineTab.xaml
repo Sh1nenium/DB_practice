@@ -23,6 +23,7 @@
             <Button Content="Добавить" Width="70" Margin="5 0" Command="{Binding AddDisciplineCommand}"/>
             <Button Content="Изменить" Width="70" Margin="5 0" Command="{Binding EditDisciplineCommand}"/>
             <Button Content="Удалить" Width="70" Margin="5 0" Command="{Binding DeleteDisciplineCommand}"/>
+            <TextBox Margin="5" MinWidth="200" MaxWidth="250" Text="{Binding SearchString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         </StackPanel>
 
         <DataGrid Grid.Row="1"
@@ -70,8 +71,9 @@
                 </Grid>
             </StackPanel>
             <StackPanel Grid.Column="1" VerticalAlignment="Top">
-                <Button Content="Список заданий" Height="30" Margin="0 0 0 5"/>
-                <Button Content="Учебные пособия" Height="30"/>
+                <Button Content="Список заданий" Height="30" Margin="0 0 0 5" Click="Open_New_Window_Task" />
+                <Button Content="Учебные пособия" Height="30" Margin="0 0 0 5" Click="Open_New_Window_TrainingManual" />
+                <Button Content="Преподаватели" Height="30" Click="Open_New_Window_Employee" />
             </StackPanel>
         </Grid>
     </Grid>
