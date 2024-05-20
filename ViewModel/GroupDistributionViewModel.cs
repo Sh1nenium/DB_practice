@@ -49,7 +49,7 @@ namespace ViewModel
             DeleteDisciplineInGroupCommand.NotifyCanExecuteChanged();
         }
 
-        private bool CurrentGroupInNotNullAndHour()
+        private bool CurrentDisciplineInNotNullAndHour()
         {
             return CurrentDiscipline != null && HourPerAcademicYearTextBox > 0;
         }
@@ -61,7 +61,7 @@ namespace ViewModel
 
         public Group Group {  get; set; }
 
-        [RelayCommand(CanExecute = nameof(CurrentGroupInNotNullAndHour))]
+        [RelayCommand(CanExecute = nameof(CurrentDisciplineInNotNullAndHour))]
         public void AddDisciplineInGroup()
         {
             GroupDistribution groupDistribution = new()
@@ -78,6 +78,10 @@ namespace ViewModel
 
             GroupDistributions.Add(groupDistribution);
             Disciplines.Remove(CurrentDiscipline);
+
+            IsEnabled = true;
+            HourPerAcademicYearTextBox = 0;
+            AddDisciplineInGroupCommand.NotifyCanExecuteChanged();
         }
 
         [RelayCommand(CanExecute = nameof(CurrentGroupDistributionIsNotNull))]
