@@ -97,7 +97,7 @@ namespace ViewModel
             SwapState(State.OnAdd);
             CurrentDiscipline = new()
             {
-                Id = Disciplines.Count + 1
+                Id = Disciplines.Last().Id + 1
             };
             ApplyDisciplineCommand.NotifyCanExecuteChanged();
         }

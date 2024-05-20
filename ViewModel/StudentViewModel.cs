@@ -87,7 +87,7 @@ namespace ViewModel
             SwapState(State.OnAdd);
             CurrentStudent = new()
             {
-                NumberOfRecordBook = Students.Count + 1
+                NumberOfRecordBook = Students.Last().NumberOfRecordBook + 1
             };
             ApplyStudentCommand.NotifyCanExecuteChanged();
         }

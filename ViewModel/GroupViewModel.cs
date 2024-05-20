@@ -92,7 +92,7 @@ namespace ViewModel
             SwapState(State.OnAdd);
             CurrentGroup = new()
             {
-                Id = Groups.Count + 1
+                Id = Groups.Last().Id + 1
             };
             ApplyGroupCommand.NotifyCanExecuteChanged();
         }

@@ -75,7 +75,7 @@ namespace ViewModel
             SwapState(State.OnAdd);
             CurrentTask = new()
             {
-                Id = _taskRepository.GetAll().Count + 1
+                Id = _taskRepository.GetAll().Last().Id + 1
             };
             ApplyTaskCommand.NotifyCanExecuteChanged();
         }

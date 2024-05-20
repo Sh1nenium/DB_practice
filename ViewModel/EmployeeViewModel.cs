@@ -89,7 +89,7 @@ namespace ViewModel
             SwapState(State.OnAdd);
             CurrentEmployee = new()
             {
-                Id = Employee.Count + 1
+                Id = Employee.Last().Id + 1
             };
             ApplyEmployeeCommand.NotifyCanExecuteChanged();
         }

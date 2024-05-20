@@ -71,7 +71,7 @@ namespace ViewModel
             SwapState(State.OnAdd);
             CurrentTrainingManual = new()
             {
-                Id = _trainingManualRepository.GetAll().Count + 1
+                Id = _trainingManualRepository.GetAll().Last().Id + 1
             };
             ApplyTrainingManualCommand.NotifyCanExecuteChanged();
         }
