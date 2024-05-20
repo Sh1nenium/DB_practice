@@ -32,7 +32,7 @@
                   AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Дисциплина" IsReadOnly="True" Binding="{Binding Discipline.Name}"/>
-                <DataGridTextColumn Header="Академический часов в год" IsReadOnly="True" Binding="{Binding HoursPerAcademicYear}"/>
+                <DataGridTextColumn Header="Академических часов в год" IsReadOnly="True" Binding="{Binding HoursPerAcademicYear}"/>
                 <DataGridTextColumn Header="Дата назначения" IsReadOnly="True" Binding="{Binding DateOfDistribution}"/>
             </DataGrid.Columns>
         </DataGrid>

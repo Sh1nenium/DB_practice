@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vm="clr-namespace:ViewModel;assembly=ViewModel"
         mc:Ignorable="d"
-        Title="{Binding Group.Name}" Height="450" Width="550"
+        Title="{Binding Group.Name}" Height="450" Width="650"
         d:DataContext="{d:DesignInstance Type=vm:StudentsInGroupViewModel}"
         WindowStartupLocation="CenterScreen">
     <Grid>
@@ -26,7 +26,8 @@
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="{Binding Name}" Margin="0 0 3 0"/>
                             <TextBlock Text="{Binding Surname}" Margin="0 0 3 0"/>
-                            <TextBlock Text="{Binding Patronymic}"/>
+                            <TextBlock Text="{Binding Patronymic}" Margin="0 0 3 0"/>
+                            <TextBlock Text="{Binding Group.Name}"/>
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
@@ -48,7 +49,8 @@
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="{Binding Name}" Margin="0 0 3 0"/>
                             <TextBlock Text="{Binding Surname}" Margin="0 0 3 0"/>
-                            <TextBlock Text="{Binding Patronymic}"/>
+                            <TextBlock Text="{Binding Patronymic}" Margin="0 0 3 0"/>
+                            <TextBlock Text="{Binding Group.Name}"/>
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>

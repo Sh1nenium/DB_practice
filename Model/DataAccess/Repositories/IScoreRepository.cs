@@ -8,7 +8,7 @@
 
         public Task<Score?> GetById(long numberOfRecordBook, long taskId);
 
-        public List<Score> GetAllByDiscipline(long disciplineId);
+        public List<Score?> GetAllByDisciplineAndTask(long disciplineId, long taskId);
 
         public List<Score> GetAllByStudent(long numberOfRecordBook);
 

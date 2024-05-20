@@ -31,7 +31,7 @@ namespace ViewModel.UseCases
                 .FindAsync(numberOfRecordBook, taskId);
         }
 
-        public List<Score> GetAllByDiscipline(long disciplineId)
+        public List<Score?> GetAllByDisciplineAndTask(long disciplineId, long taskId)
         {
             using Context context = new();
 
@@ -56,12 +56,12 @@ namespace ViewModel.UseCases
                     student => student.NumberOfRecordBook,
                     score => score.NumberOfRecordBook,
                     (student, scores) => new { Student = student, Scores = scores })
-                .SelectMany(x => x.Scores.DefaultIfEmpty(),
+                .SelectMany(x => x.Scores.Where(x => x.TaskId == taskId).DefaultIfEmpty(),
                     (x, sc) => new Score()
                     {
                         NumberOfRecordBook = x.Student.NumberOfRecordBook,
-                        TaskId = (sc == null ? null : sc.TaskId),
-                        ScoreNumber = (sc == null ? 0 : sc.ScoreNumber),
+                        TaskId = (sc == null || sc.TaskId != taskId ? taskId : sc.TaskId),
+                        ScoreNumber = (sc == null || sc.TaskId != taskId ? 0 : sc.ScoreNumber),
                         Student = x.Student,
                     })
                 .ToList();

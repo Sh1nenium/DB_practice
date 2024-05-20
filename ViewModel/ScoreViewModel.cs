@@ -42,7 +42,7 @@ namespace ViewModel
         public ScoreViewModel(Model.Task task) 
         {
             Task = task;
-            Scores = new ObservableCollection<Score>(_scoreRepository.GetAllByDiscipline(Task!.DisciplineId));
+            Scores = new ObservableCollection<Score>(_scoreRepository.GetAllByDisciplineAndTask(Task!.DisciplineId, Task.Id));
         }
     }
 }

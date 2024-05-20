@@ -25,7 +25,7 @@ namespace ViewModel.UseCases
         public List<Student> GetAllByGroup(long groupId)
         {
             using Context context = new();
-            return [.. context.Students.Where(x => x.GroupId == groupId)];
+            return [.. context.Students.Where(x => x.GroupId == groupId).Include(x => x.Group)];
         }
 
         public async Task<Student?> GetByNumberOfRecordBook(long numberOfRecordBook)

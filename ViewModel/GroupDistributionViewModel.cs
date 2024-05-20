@@ -98,7 +98,7 @@ namespace ViewModel
             Group = group;
 
             GroupDistributions = new(_groupDistributionRepository.GetAllByGroup(Group.Id));
-            Disciplines = new(_disciplineRepository.GetAll().Where(x => GroupDistributions.Any(y => y.DisciplineId != x.Id)));
+            Disciplines = new(_disciplineRepository.GetAll().Where(x => GroupDistributions.All(y => y.DisciplineId != x.Id)));
         }
 
     }
