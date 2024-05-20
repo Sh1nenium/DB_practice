@@ -32,7 +32,19 @@ namespace ViewModel
 
         partial void OnCurrentTaskChanged(Task? value)
         {
+            if (CurrentTask == null)
+            {
+                EditTaskCommand.NotifyCanExecuteChanged();
+                return;
+            }
+
             EditTaskCommand.NotifyCanExecuteChanged();
+            CurrentTask.ErrorsChanged += CurrentTask_ErrorsChanged;
+        }
+
+        private void CurrentTask_ErrorsChanged(object? sender, System.ComponentModel.DataErrorsChangedEventArgs e)
+        {
+            ApplyTaskCommand.NotifyCanExecuteChanged();
         }
 
         private bool TaskNotNull()
@@ -89,7 +101,14 @@ namespace ViewModel
             DeleteTaskCommand.NotifyCanExecuteChanged();
         }
 
-        [RelayCommand()]
+        public bool ValidateCurrentTask()
+        {
+            if (CurrentTask == null) { return false; }
+
+            return !CurrentTask.HasErrors;
+        }
+
+        [RelayCommand(CanExecute = nameof(ValidateCurrentTask))]
         public async System.Threading.Tasks.Task ApplyTask()
         {
             if (CurrentTask == null) return;

@@ -32,7 +32,19 @@ namespace ViewModel
 
         partial void OnCurrentEmployeeChanged(Employee? value)
         {
+            if (CurrentEmployee == null)
+            {
+                EditEmployeeCommand.NotifyCanExecuteChanged();
+                return;
+            }
+
             EditEmployeeCommand.NotifyCanExecuteChanged();
+            CurrentEmployee.ErrorsChanged += CurrentEmployee_ErrorsChanged;
+        }
+
+        private void CurrentEmployee_ErrorsChanged(object? sender, System.ComponentModel.DataErrorsChangedEventArgs e)
+        {
+            ApplyEmployeeCommand.NotifyCanExecuteChanged();
         }
 
         [ObservableProperty]
@@ -103,7 +115,14 @@ namespace ViewModel
             DeleteEmployeeCommand.NotifyCanExecuteChanged();
         }
 
-        [RelayCommand()]
+        private bool ValidateCurrentEmployee()
+        {
+            if (CurrentEmployee == null) { return false; }
+
+            return !CurrentEmployee.HasErrors;
+        }
+
+        [RelayCommand(CanExecute = nameof(ValidateCurrentEmployee))]
         public async Task ApplyEmployee()
         {
             if (CurrentEmployee == null) return;

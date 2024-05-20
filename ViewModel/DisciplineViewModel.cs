@@ -30,7 +30,19 @@ namespace ViewModel
 
         partial void OnCurrentDisciplineChanged(Discipline? value)
         {
+            if (CurrentDiscipline == null)
+            {
+                EditDisciplineCommand.NotifyCanExecuteChanged();
+                return;
+            }
+
             EditDisciplineCommand.NotifyCanExecuteChanged();
+            CurrentDiscipline.ErrorsChanged += CurrentDiscipline_ErrorsChanged;
+        }
+
+        private void CurrentDiscipline_ErrorsChanged(object? sender, System.ComponentModel.DataErrorsChangedEventArgs e)
+        {
+            ApplyDisciplineCommand.NotifyCanExecuteChanged();
         }
 
         private bool DisciplineNotNull()
@@ -111,7 +123,14 @@ namespace ViewModel
             DeleteDisciplineCommand.NotifyCanExecuteChanged();
         }
 
-        [RelayCommand()]
+        private bool ValidateCurrentDiscipline()
+        {
+            if (CurrentDiscipline == null) { return false; }
+
+            return !CurrentDiscipline.HasErrors;
+        }
+
+        [RelayCommand(CanExecute = nameof(ValidateCurrentDiscipline))]
         public async Task ApplyDiscipline()
         {
             if (CurrentDiscipline == null) return;

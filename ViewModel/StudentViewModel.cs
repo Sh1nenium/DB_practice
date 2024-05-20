@@ -44,7 +44,19 @@ namespace ViewModel
 
         partial void OnCurrentStudentChanged(Student? value)
         {
+            if (CurrentStudent == null)
+            {
+                EditStudentCommand.NotifyCanExecuteChanged();
+                return;
+            }
+
             EditStudentCommand.NotifyCanExecuteChanged();
+            CurrentStudent.ErrorsChanged += CurrentStudent_ErrorsChanged;
+        }
+
+        private void CurrentStudent_ErrorsChanged(object? sender, System.ComponentModel.DataErrorsChangedEventArgs e)
+        {
+            ApplyStudentCommand.NotifyCanExecuteChanged();
         }
 
         private bool StudentNotNull()
@@ -118,7 +130,14 @@ namespace ViewModel
             CurrentStudent.Photo = null;
         }
 
-        [RelayCommand()]
+        private bool ValidateCurrentStudent()
+        {
+            if (CurrentStudent == null) { return false; }
+
+            return !CurrentStudent.HasErrors;
+        }
+
+        [RelayCommand(CanExecute = nameof(ValidateCurrentStudent))]
         public async Task ApplyStudent()
         {
             if (CurrentStudent == null) return;

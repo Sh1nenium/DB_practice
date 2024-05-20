@@ -33,7 +33,19 @@ namespace ViewModel
 
         partial void OnCurrentTrainingManualChanged(TrainingManual? value)
         {
+            if (CurrentTrainingManual == null)
+            {
+                EditTrainingManualCommand.NotifyCanExecuteChanged();
+                return;
+            }
+
             EditTrainingManualCommand.NotifyCanExecuteChanged();
+            CurrentTrainingManual.ErrorsChanged += CurrentTrainingManual_ErrorsChanged;
+        }
+
+        private void CurrentTrainingManual_ErrorsChanged(object? sender, System.ComponentModel.DataErrorsChangedEventArgs e)
+        {
+            ApplyTrainingManualCommand.NotifyCanExecuteChanged();
         }
 
         private bool TrainingManualNotNull()
@@ -85,7 +97,14 @@ namespace ViewModel
             DeleteTrainingManualCommand.NotifyCanExecuteChanged();
         }
 
-        [RelayCommand()]
+        private bool ValidateCurrentTrainingManual()
+        {
+            if (CurrentTrainingManual == null) { return false; }
+
+            return !CurrentTrainingManual.HasErrors;
+        }
+
+        [RelayCommand(CanExecute = nameof(ValidateCurrentTrainingManual))]
         public async Task ApplyTrainingManual()
         {
             if (CurrentTrainingManual == null) return;

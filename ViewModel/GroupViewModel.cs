@@ -30,7 +30,19 @@ namespace ViewModel
 
         partial void OnCurrentGroupChanged(Group? value)
         {
+            if (CurrentGroup == null)
+            {
+                EditGroupCommand.NotifyCanExecuteChanged();
+                return;
+            }
+
             EditGroupCommand.NotifyCanExecuteChanged();
+            CurrentGroup.ErrorsChanged += CurrentGroup_ErrorsChanged;
+        }
+
+        private void CurrentGroup_ErrorsChanged(object? sender, System.ComponentModel.DataErrorsChangedEventArgs e)
+        {
+            ApplyGroupCommand.NotifyCanExecuteChanged();
         }
 
         private bool GroupNotNull()
@@ -106,7 +118,14 @@ namespace ViewModel
             DeleteGroupCommand.NotifyCanExecuteChanged();
         }
 
-        [RelayCommand()]
+        private bool ValidateCurrentGroup()
+        {
+            if (CurrentGroup == null) { return false; }
+
+            return !CurrentGroup.HasErrors;
+        }
+
+        [RelayCommand(CanExecute = nameof(ValidateCurrentGroup))]
         public async Task ApplyGroup()
         {
             if (CurrentGroup == null) return;
