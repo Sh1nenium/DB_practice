@@ -48,7 +48,6 @@ namespace Model.DataAccess
             modelBuilder.Entity<Student>().HasData(new Student
             {
                 NumberOfRecordBook = 1,
-                Photo = File.ReadAllBytes("C:\\Users\\sabir\\source\\repos\\DB_practice\\View\\Resources\\1.jpg"),
                 SabbaticalLeave = false,
                 Name = "Дмитрий",
                 Surname = "Сабиров",
@@ -118,6 +117,7 @@ namespace Model.DataAccess
                 NumberOfRecordBook = 1,
                 TaskId = 1,
                 ScoreNumber = 5,
+                DateOfIssue = DateOnly.FromDateTime(DateTime.Now)
             });
 
             modelBuilder.Entity<GroupDistribution>().HasData(new GroupDistribution

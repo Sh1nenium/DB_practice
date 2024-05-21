@@ -35,9 +35,9 @@ namespace ViewModel.UseCases
             var query = context.Disciplines
                 .Join(context.EmployeeDisciplines,
                     discipline => discipline.Id,
-                    employeeDiscipline => employeeDiscipline.EmployeeId,
+                    employeeDiscipline => employeeDiscipline.DisciplineId,
                     (discipline, employeeDiscipline) => new { Discipline = discipline, EmployeeDiscipline = employeeDiscipline })
-                .Where(x => x.EmployeeDiscipline.DisciplineId == employeeId)
+                .Where(x => x.EmployeeDiscipline.EmployeeId == employeeId)
                 .Select(x => x.Discipline)
                 .ToList();
 

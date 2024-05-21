@@ -69,7 +69,7 @@ namespace ViewModel
         [RelayCommand(CanExecute = nameof(CurrentDisciplineInEmployeeIsNotNull))]
         public void DeleteDisciplineInEmployee()
         {
-            _employeeDisciplineRepository.Remove(CurrentDisciplineInEmployee!.Id, Employee.Id);
+            _employeeDisciplineRepository.Remove(Employee.Id, CurrentDisciplineInEmployee!.Id);
 
             Disciplines.Add(CurrentDisciplineInEmployee!);
             DisciplinesInEmployee.Remove(CurrentDisciplineInEmployee!);

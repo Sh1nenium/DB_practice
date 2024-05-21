@@ -9,11 +9,13 @@ namespace Model
         [ObservableProperty]
         private long _id;
 
+        [Required]
         [MaxLength(30)]
         [NotifyDataErrorInfo]
         [ObservableProperty]
         private string _name = string.Empty;
 
+        [Required]
         [MaxLength(30)]
         [NotifyDataErrorInfo]
         [ObservableProperty]
@@ -25,22 +27,25 @@ namespace Model
         [ObservableProperty]
         private string _patronymic = string.Empty;
 
+        [Required]
         [MaxLength(50)]
         [NotifyDataErrorInfo]
         [ObservableProperty]
         private string _post = string.Empty;
 
+        [Required]
         [RegularExpression(@"\+? ?3?[ -]?8?[ -]?\(?(\d[ -]?){3}\)?[ -]?(\d[ -]?){7}")]
         [NotifyDataErrorInfo]
         [ObservableProperty]
         private string _phoneNumber = string.Empty;
 
+        [Required]
         [EmailAddress]
         [NotifyDataErrorInfo]
         [ObservableProperty]
         private string _email = string.Empty;
 
-        [MaxLength(100)]
+        [Required]
         [NotifyDataErrorInfo]
         [ObservableProperty]
         private string _street = string.Empty;
@@ -51,7 +56,7 @@ namespace Model
         private string _workExperience = string.Empty;
 
         [AllowNull]
-        [MaxLength(15)]
+        [MaxLength(6)]
         [NotifyDataErrorInfo]
         [ObservableProperty]
         private string _academicDegree = string.Empty;

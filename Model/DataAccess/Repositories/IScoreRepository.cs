@@ -8,7 +8,7 @@
 
         public Task<Score?> GetById(long numberOfRecordBook, long taskId);
 
-        public List<Score?> GetAllByDisciplineAndTask(long disciplineId, long taskId);
+        public List<Score>? GetAllByDisciplineAndTask(long disciplineId, long taskId);
 
         public List<Score> GetAllByStudent(long numberOfRecordBook);
 
@@ -16,6 +16,6 @@
 
         public void Update(Score score);
 
-        public Task Remove(long id);
+        public Task Remove(long numberOfRecordBook, long taskId);
     }
 }

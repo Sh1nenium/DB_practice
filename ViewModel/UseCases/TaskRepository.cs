@@ -21,6 +21,24 @@ namespace ViewModel.UseCases
             return [.. context.Tasks.Include(x => x.Discipline)];
         }
 
+        public List<Model.Task> GetAllByGroup(long groupId)
+        {
+            using Context context = new();
+            
+            var query = context.GroupDistributions
+                .Where(x => x.GroupId == groupId)
+                .Include(x => x.Discipline)
+                .Join(context.Tasks,
+                    (discipline) => discipline.DisciplineId,
+                    (task) => task.DisciplineId,
+                    (discipline, task) => new { Discipline = discipline, Task = task})
+                .Select(x => x.Task)
+                .Include(x => x.Discipline)
+                .ToList();
+
+            return query;
+        }
+
         public async Task<Model.Task?> GetById(long id)
         {
             using Context context = new();

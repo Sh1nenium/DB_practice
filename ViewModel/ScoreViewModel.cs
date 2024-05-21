@@ -29,6 +29,7 @@ namespace ViewModel
                     NumberOfRecordBook = score.Student.NumberOfRecordBook,
                     TaskId = Task.Id,
                     ScoreNumber = score.ScoreNumber,
+                    DateOfIssue = DateOnly.FromDateTime(DateTime.Now),
                 });
 
                 score.TaskId = Task.Id;

@@ -8,6 +8,8 @@
 
         public List<Task> GetByDiscipline(long disciplineId);
 
+        public List<Task> GetAllByGroup(long groupId);
+
         public System.Threading.Tasks.Task Add(Task task);
 
         public void Update(Task task);

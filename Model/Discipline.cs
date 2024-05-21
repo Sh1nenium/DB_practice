@@ -8,12 +8,13 @@ namespace Model
         [ObservableProperty]
         private long _id;
 
+        [Required]
         [MaxLength(50)]
         [NotifyDataErrorInfo]
         [ObservableProperty]
         private string _name = string.Empty;
 
-        [MaxLength(3000)]
+        [Required]
         [NotifyDataErrorInfo]
         [ObservableProperty]
         private string _description = string.Empty;

@@ -20,9 +20,12 @@ namespace Model
         [ForeignKey("TaskId")]
         public Task? Task { get; set; }
 
-        [Range(0, 20)]
+        [Range(0, 5)]
         [NotifyDataErrorInfo]
         [ObservableProperty]
         private int _scoreNumber;
+
+        [ObservableProperty]
+        private DateOnly _dateOfIssue;
     }
 }

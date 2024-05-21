@@ -55,7 +55,6 @@ namespace Model
         private string _email = string.Empty;
 
         [Required]
-        [MaxLength(100)]
         [NotifyDataErrorInfo]
         [ObservableProperty]
         private string _street = string.Empty;

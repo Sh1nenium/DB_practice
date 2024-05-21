@@ -31,7 +31,7 @@ namespace ViewModel.UseCases
                 .FindAsync(numberOfRecordBook, taskId);
         }
 
-        public List<Score?> GetAllByDisciplineAndTask(long disciplineId, long taskId)
+        public List<Score>? GetAllByDisciplineAndTask(long disciplineId, long taskId)
         {
             using Context context = new();
 
@@ -78,10 +78,10 @@ namespace ViewModel.UseCases
                 .ThenInclude(x => x!.Discipline)];
         }
 
-        public async Task Remove(long id)
+        public async Task Remove(long numberOfRecordBook, long taskId)
         {
             using Context context = new();
-            Score? findedScore = await context.Scores.FindAsync(id);
+            Score? findedScore = await context.Scores.FindAsync(numberOfRecordBook, taskId);
 
             if (findedScore == null) return;
 

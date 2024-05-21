@@ -5,17 +5,50 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vm="clr-namespace:ViewModel;assembly=ViewModel"
         mc:Ignorable="d"
-        Title="{Binding Student.Name}" Height="450" Width="350"
+        Title="{Binding Student.Name}" Height="450" Width="550"
         d:DataContext="{d:DesignInstance Type=vm:StudentScoreViewModel}"
         WindowStartupLocation="CenterScreen">
     <Grid>
-        <DataGrid ItemsSource="{Binding Scores}" 
-                  IsReadOnly="True" 
-                  AutoGenerateColumns="False">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <ListBox Grid.Column="0" 
+                 ItemsSource="{Binding Tasks}" 
+                 SelectedItem="{Binding CurrentTask}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Discipline.Name}" Margin="0 0 5 0"/>
+                        <TextBlock Text="-" Margin="0 0 5 0"/>
+                        <TextBlock Text="{Binding Name}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <StackPanel Grid.Column="1" Margin="10 0" VerticalAlignment="Center">
+            <StackPanel IsEnabled="{Binding IsEnabled}">
+                <TextBlock Margin="0 0 0 5" Text="Оценка" TextAlignment="Center" TextWrapping="Wrap"/>
+                <TextBox Text="{Binding ScoreNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 0 10"/>
+            </StackPanel>
+            <Button Content="Добавить" Margin="0 0 0 10" Command="{Binding AddScoreToStudentCommand}"/>
+            <Button Content="Удалить" Command="{Binding DeleteScoreToStudentCommand}"/>
+        </StackPanel>
+        <DataGrid Grid.Column="2"
+                  ItemsSource="{Binding Scores}"
+                  AutoGenerateColumns="False"
+                  SelectedItem="{Binding CurrentScore}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Задание" Binding="{Binding Task.Name}"/>
-                <DataGridTextColumn Header="Дисциплина" Binding="{Binding Task.Discipline.Name}"/>
-                <DataGridTextColumn Header="Оценка" Binding="{Binding ScoreNumber}"/>
+                <DataGridTextColumn IsReadOnly="True" Header="Дисциплина" Binding="{Binding Task.Discipline.Name}"/>
+                <DataGridTextColumn IsReadOnly="True" Header="Задание" Binding="{Binding Task.Name}"/>
+                <DataGridTextColumn Header="Оценка" Binding="{Binding ScoreNumber}">
+                    <DataGridTextColumn.EditingElementStyle>
+                        <Style TargetType="TextBox">
+                            <EventSetter Event="TextBox.TextChanged" Handler="TextBox_TextChanged"/>
+                        </Style>
+                    </DataGridTextColumn.EditingElementStyle>
+                </DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

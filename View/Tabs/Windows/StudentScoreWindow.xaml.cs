@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ViewModel;
 
 namespace View.Tabs.Windows
 {
@@ -22,6 +24,17 @@ namespace View.Tabs.Windows
         public StudentScoreWindow()
         {
             InitializeComponent();
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (sender is TextBox textBox)
+            {
+                if (textBox.DataContext is Score score)
+                {
+                    ((StudentScoreViewModel)DataContext).ScoreNumberChangedCommand.Execute(score);
+                }
+            }
         }
     }
 }
