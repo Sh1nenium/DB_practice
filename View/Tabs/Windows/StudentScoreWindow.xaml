@@ -35,21 +35,31 @@
             <Button Content="Добавить" Margin="0 0 0 10" Command="{Binding AddScoreToStudentCommand}"/>
             <Button Content="Удалить" Command="{Binding DeleteScoreToStudentCommand}"/>
         </StackPanel>
-        <DataGrid Grid.Column="2"
-                  ItemsSource="{Binding Scores}"
-                  AutoGenerateColumns="False"
-                  SelectedItem="{Binding CurrentScore}">
-            <DataGrid.Columns>
-                <DataGridTextColumn IsReadOnly="True" Header="Дисциплина" Binding="{Binding Task.Discipline.Name}"/>
-                <DataGridTextColumn IsReadOnly="True" Header="Задание" Binding="{Binding Task.Name}"/>
-                <DataGridTextColumn Header="Оценка" Binding="{Binding ScoreNumber}">
-                    <DataGridTextColumn.EditingElementStyle>
-                        <Style TargetType="TextBox">
-                            <EventSetter Event="TextBox.TextChanged" Handler="TextBox_TextChanged"/>
-                        </Style>
-                    </DataGridTextColumn.EditingElementStyle>
-                </DataGridTextColumn>
-            </DataGrid.Columns>
-        </DataGrid>
+        <Grid Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" Orientation="Horizontal">
+                <TextBlock Text="Средний балл по всем дисциплинам:" Margin="0 0 5 0"/>
+                <TextBlock Text="{Binding AvgScore}" />
+            </StackPanel>
+            <DataGrid Grid.Row="1"
+                      ItemsSource="{Binding Scores}"
+                      AutoGenerateColumns="False"
+                      SelectedItem="{Binding CurrentScore}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn IsReadOnly="True" Header="Дисциплина" Binding="{Binding Task.Discipline.Name}"/>
+                    <DataGridTextColumn IsReadOnly="True" Header="Задание" Binding="{Binding Task.Name}"/>
+                    <DataGridTextColumn Header="Оценка" Binding="{Binding ScoreNumber}">
+                        <DataGridTextColumn.EditingElementStyle>
+                            <Style TargetType="TextBox">
+                                <EventSetter Event="TextBox.TextChanged" Handler="TextBox_TextChanged"/>
+                            </Style>
+                        </DataGridTextColumn.EditingElementStyle>
+                    </DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
     </Grid>
 </Window>

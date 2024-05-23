@@ -21,6 +21,9 @@
             <TabItem Header="Сотрудники">
                 <tabs:EmployeeTab />
             </TabItem>
+            <TabItem Header="Статистика">
+                <tabs:Query />
+            </TabItem>
         </TabControl>
     </Grid>
 </Window>

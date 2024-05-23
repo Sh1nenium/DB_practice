@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using Model;
 using Model.DataAccess.Repositories;
+using Npgsql.TypeMapping;
 using System.Collections.ObjectModel;
 using ViewModel.Abstrations;
 using ViewModel.UseCases;
@@ -19,7 +20,10 @@ namespace ViewModel
         private bool _isEnabled;
 
         [ObservableProperty]
-        private int _ScoreNumber;
+        private int _scoreNumber;
+
+        [ObservableProperty]
+        private double _avgScore;
 
         partial void OnScoreNumberChanged(int value)
         {
@@ -74,6 +78,8 @@ namespace ViewModel
 
             IsEnabled = false;
             ScoreNumber = 0;
+
+            AvgScore = Math.Round(Scores.Average(x => x.ScoreNumber), 2);
         }
 
         private bool CurrentScoreNotNull()
@@ -98,6 +104,7 @@ namespace ViewModel
 
             Tasks.Add(task);
             Scores.Remove(CurrentScore);
+            AvgScore = Math.Round(Scores.Average(x => x.ScoreNumber), 2);
 
             DeleteScoreToStudentCommand.NotifyCanExecuteChanged();
         }
@@ -121,6 +128,8 @@ namespace ViewModel
             }
 
             _scoreRepository.Update(score);
+
+            AvgScore = Math.Round(Scores.Average(x => x.ScoreNumber), 2);
         }
 
         public Student Student { get; set; }
@@ -132,6 +141,8 @@ namespace ViewModel
             Scores = new ObservableCollection<Score>(_scoreRepository.GetAllByStudent(Student.NumberOfRecordBook));
 
             Tasks = new(_taskRepository.GetAllByGroup(Student.GroupId ?? 0).Where(x => Scores.All(y => y.TaskId != x.Id)));
+
+            AvgScore = Math.Round(Scores.Average(x => x.ScoreNumber), 2);
         }
     }
 }
