@@ -12,5 +12,11 @@ namespace Model
 
         [ObservableProperty]
         private double _averageScore;
+
+        [ObservableProperty]
+        private int _totalStudents;
+
+        [ObservableProperty]
+        private double _OverallAverageScore;
     }
 }
